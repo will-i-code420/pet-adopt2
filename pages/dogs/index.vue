@@ -5,7 +5,7 @@
         <b-col>
           <h1>All Dogs Page</h1>
           <PetTable
-            species="Cats"
+            species="Dogs"
           />
         </b-col>
       </b-row>

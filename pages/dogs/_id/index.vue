@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <h1>Single Dog Page</h1>
+          <PetCard />
         </b-col>
       </b-row>
     </b-container>
@@ -11,7 +11,12 @@
 </template>
 
 <script>
+import PetCard from '~/components/PetCard'
+
 export default {
+  components: {
+    PetCard
+  }
 }
 </script>
 
