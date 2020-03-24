@@ -3,6 +3,8 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+require('dotenv').config()
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -21,16 +23,16 @@ async function start() {
     await builder.build()
   }
 
+  mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }).then(() => console.log('DB Connection Successful')).catch(e => console.log(e))
+
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: false}))
 
-  app.post('/contact', (req, res) => {
-    const { name, email, info } = req.body
-    console.log(`${name} wants ${info} sent to ${email}`)
-    res.status(200).json({
-      msg: `Thank You ${name}, we have received your request and will send a response to ${email} within 24 hours`
-    })
-  })
+  require('./routes/routes')(app)
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
