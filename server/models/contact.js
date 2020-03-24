@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
+const today = new Date()
+
 const ContactSchema = new Schema({
   name: {
     type: String,
@@ -13,6 +15,18 @@ const ContactSchema = new Schema({
   info: {
     type: String,
     required: true
+  },
+  responded: {
+    type: Boolean,
+    default: false
+  },
+  followUpRequired: {
+    type: Boolean,
+    default: true
+  },
+  followUpDate: {
+    type: Date,
+    default: today.setDate(today.getDate() + 1)
   }
 })
 
