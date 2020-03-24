@@ -25,7 +25,7 @@
 <script>
 export default {
   name: 'TopNav',
-  data() {
+  data () {
     return {
       searchQuery: ''
     }
