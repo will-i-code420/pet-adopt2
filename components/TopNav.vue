@@ -6,8 +6,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown text="Animals" right>
-            <b-dropdown-item href="#">Cats</b-dropdown-item>
-            <b-dropdown-item href="#">Dogs</b-dropdown-item>
+            <b-dropdown-item to="/cats">Cats</b-dropdown-item>
+            <b-dropdown-item to="/dogs">Dogs</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item to="/contact">Contact</b-nav-item>
           <b-nav-form @submit.prevent="searchAnimals">
