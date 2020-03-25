@@ -1,6 +1,6 @@
 <template>
   <section id="pet-card-container">
-    <h1>Individual Pet Card</h1>
+    <h1>Say hello to...</h1>
     <b-card no-body class="overflow-hidden">
     <b-row no-gutters>
       <b-col md="6">
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'PetCard'
+  name: 'SinglePetCard'
 }
 </script>
 

@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <PetCard />
+          <SinglePetCard />
         </b-col>
       </b-row>
     </b-container>
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import PetCard from '~/components/PetCard'
+import SinglePetCard from '~/components/SinglePetCard'
 
 export default {
   components: {
-    PetCard
+    SinglePetCard
   }
 }
 </script>
