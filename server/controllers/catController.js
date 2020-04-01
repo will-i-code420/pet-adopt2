@@ -16,7 +16,7 @@ module.exports = {
   },
   async getAllCats (req, res) {
     try {
-      const cats = await Cat.find({})
+      const cats = await Cat.find()
       res.status(200).json({
         cats: cats
       })

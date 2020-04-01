@@ -5,7 +5,7 @@ const catController = require('../controllers/catController')
 
 module.exports = app => {
   app.post('/contact', contactControllerPolicy.received, contactController.received)
-  app.get('/contact')
+  app.get('/contact', contactController.getAllContacts)
   app.post('/dogs', dogController.addDog)
   app.get('/dogs', dogController.getAllDogs)
   app.get('/dogs/:id', dogController.getSingleDog)

@@ -16,7 +16,7 @@ module.exports = {
   },
   async getAllDogs (req, res) {
     try {
-      const dogs = await Dog.find({})
+      const dogs = await Dog.find()
       res.status(200).json({
         dogs: dogs
       })
