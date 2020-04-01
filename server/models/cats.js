@@ -18,6 +18,14 @@ const CatSchema = new Schema({
     type: String,
     required: true
   },
+  dateAdded: {
+    type: Date,
+    default: Date.now
+  },
+  adopted: {
+    type: Boolean,
+    default: false
+  },
   notes: [String]
 })
 
