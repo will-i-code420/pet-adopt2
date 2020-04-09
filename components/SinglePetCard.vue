@@ -1,5 +1,5 @@
 <template>
-  <section id="pet-card-container">
+  <section id="single-pet-container">
     <h1>Say hello to...</h1>
     <b-card no-body class="overflow-hidden">
     <b-row no-gutters>

@@ -1,13 +1,12 @@
 <template>
   <section id="all-dogs-container">
     <b-container>
+      <h1 class="text-center py-3">All Dogs Looking For A New Home</h1>
       <b-row>
-        <b-col>
-          <h1>All Dogs Page</h1>
+        <b-col v-for="dog in dogs" :key="dog.id" md="4">
           <AllPetCards
-            species="Dogs"
             route="dogs/"
-            :pets="dogs"
+            :pet="dog"
           />
         </b-col>
       </b-row>
