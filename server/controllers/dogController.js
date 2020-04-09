@@ -39,5 +39,19 @@ module.exports = {
         msg: 'An error occured please try again'
       })
     }
+  },
+  async updateSingleDog (req, res) {
+    try {
+      const dog = Dog.findByIdAndUpdate(req.params.id, req.body)
+      res.status(200).json({
+        dog: dog,
+        msg: `Updated ${req.body.name} information`
+      })
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: 'An error occured please try again'
+      })
+    }
   }
 }
