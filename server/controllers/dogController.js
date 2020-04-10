@@ -31,7 +31,7 @@ module.exports = {
     try {
       const dog = await Dog.findById(req.params.id)
       res.status(200).json({
-        dog: dog
+        pet: dog
       })
     } catch (e) {
       console.log(e)
@@ -44,7 +44,7 @@ module.exports = {
     try {
       const dog = Dog.findByIdAndUpdate(req.params.id, req.body)
       res.status(200).json({
-        dog: dog,
+        pet: dog,
         msg: `Updated ${req.body.name} information`
       })
     } catch (e) {

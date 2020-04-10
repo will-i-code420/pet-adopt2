@@ -82,6 +82,9 @@
 
 <script>
 export default {
+  created () {
+    this.$store.dispatch('pets/getPets')
+  },
   computed: {
     nameVerif () {
       return this.contactForm.name.length > 4

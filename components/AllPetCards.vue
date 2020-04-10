@@ -12,9 +12,11 @@
       <b-card-text>
         <p>Breed: {{ pet.breed }}</p>
         <p>Age: {{ pet.age }}</p>
-        <p>{{ pet.description }}</p>
+        <p>{{ pet.description.substring(0, 75) + '...' }}</p>
       </b-card-text>
-      <nuxt-link :to="route + pet.id" variant="primary">View</nuxt-link>
+      <nuxt-link :to="route + pet._id">
+        View Details
+      </nuxt-link>
     </b-card>
   </section>
 </template>
@@ -24,7 +26,7 @@ export default {
   name: 'AllPetCards',
   props: {
     route: String,
-    pet: Array
+    pet: Object
   }
 }
 </script>
