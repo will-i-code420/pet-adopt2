@@ -31,7 +31,7 @@ module.exports = {
     try {
       const cat = await Cat.findById(req.params.id)
       res.status(200).json({
-        cat: cat
+        pet: cat
       })
     } catch (e) {
       console.log(e)
@@ -42,9 +42,9 @@ module.exports = {
   },
   async updateSingleCat (req, res) {
     try {
-      const dog = Cat.findByIdAndUpdate(req.params.id, req.body)
+      const cat = Cat.findByIdAndUpdate(req.params.id, req.body)
       res.status(200).json({
-        dog: dog,
+        pet: cat,
         msg: `Updated ${req.body.name} information`
       })
     } catch (e) {

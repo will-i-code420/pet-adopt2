@@ -1,23 +1,22 @@
 <template>
-  <section id="pet-table-container">
-    <h1>{{ species }} Looking For New Homes</h1>
+  <section id="all-pets-container">
     <b-card
-      v-for="pet in pets"
-      :key="pet.id"
       :title="pet.name"
       img-src="https://picsum.photos/600/300/?image=25"
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
+      style="max-width: 25rem;"
+      class="mb-4 text-center"
     >
       <b-card-text>
-        <p>{{ pet.breed }}</p>
-        <p>{{ pet.age }}</p>
-        <p>{{ pet.description }}</p>
+        <p>Breed: {{ pet.breed }}</p>
+        <p>Age: {{ pet.age }}</p>
+        <p>{{ pet.description.substring(0, 75) + '...' }}</p>
       </b-card-text>
-    <nuxt-link :to="route + pet.id" variant="primary">Go somewhere</nuxt-link>
+      <nuxt-link :to="route + pet._id">
+        View Details
+      </nuxt-link>
     </b-card>
   </section>
 </template>
@@ -26,9 +25,8 @@
 export default {
   name: 'AllPetCards',
   props: {
-    species: String,
     route: String,
-    pets: Array
+    pet: Object
   }
 }
 </script>
