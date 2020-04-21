@@ -3,6 +3,7 @@ const contactControllerPolicy = require('../policies/contactControllerPolicy')
 const dogController = require('../controllers/dogController')
 const catController = require('../controllers/catController')
 const authController = require('../controllers/authController')
+const authControllerPolicy = require('../policies/authControllerPolicy')
 
 module.exports = app => {
   app.post('/contact', contactControllerPolicy.received, contactController.received)
@@ -16,5 +17,5 @@ module.exports = app => {
   app.get('/cats', catController.getAllCats)
   app.get('/cats/:id', catController.getSingleCat)
   app.post('/login', authController.login)
-  app.post('/register', authController.register)
+  app.post('/register', authControllerPolicy.register, authController.register)
 }
