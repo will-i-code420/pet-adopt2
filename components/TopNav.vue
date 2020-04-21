@@ -16,6 +16,15 @@
               Search
             </b-button>
           </b-nav-form>
+          <b-nav-item-dropdown text="Login" right>
+            <b-nav-form>
+              <b-form-input size="sm" class="mx-3 my-2" placeholder="Username/Email" v-model="loginForm.name"></b-form-input>
+              <b-form-input size="sm" class="mx-3 my-2" placeholder="Password" v-model="loginForm.password" type="password"></b-form-input>
+              <b-button @click="loginUser" size="sm" class="my-2 my-sm-0 mx-auto">
+                Login
+              </b-button>
+            </b-nav-form>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -27,7 +36,16 @@ export default {
   name: 'TopNav',
   data () {
     return {
-      searchQuery: ''
+      searchQuery: '',
+      loginForm: {
+        name: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    loginUser () {
+      console.log(`sending login for ${this.loginForm.name} w/ pass: ${this.loginForm.password}`)
     }
   }
 }
