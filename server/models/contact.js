@@ -27,6 +27,10 @@ const ContactSchema = new Schema({
   followUpDate: {
     type: Date,
     default: today.setDate(today.getDate() + 1)
+  },
+  petId: {
+    type: String,
+    default: 'none'
   }
 })
 

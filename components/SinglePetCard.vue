@@ -22,21 +22,26 @@
             </ul>
             </p>
           </b-card-text>
-          <b-button variant="primary" class="my-3">
+          <b-button variant="primary" class="my-3" @click="activatePetInquiry">
             I'm Interested
           </b-button>
         </b-card-body>
       </b-col>
     </b-row>
     </b-card>
+    <ContactForm v-if="sendAnimalInquiry" :animalInquiry="true" :pet="pet"/>
   </section>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import ContactForm from '~/components/ContactForm'
 
 export default {
   name: 'SinglePetCard',
+  components: {
+    ContactForm
+  },
   mounted () {
     const payload = {
       species: this.$route.name,
@@ -48,6 +53,16 @@ export default {
     ...mapState({
       pet: state => state.pets.currentPet
     })
+  },
+  data () {
+    return {
+      sendAnimalInquiry: false
+    }
+  },
+  methods: {
+    activatePetInquiry () {
+      this.sendAnimalInquiry = true
+    }
   }
 }
 </script>

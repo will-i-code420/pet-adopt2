@@ -25,7 +25,7 @@
       </b-row>
       <b-form-row align-h="start" class="pb-3">
         <b-col cols="8" offset="2" class="contact-form py-3 px-5">
-          <ContactForm />
+          <ContactForm :animalInquiry="false"/>
         </b-col>
       </b-form-row>
     </b-container>
