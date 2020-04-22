@@ -45,17 +45,14 @@ UserSchema.pre('save', function (next) {
   })
 })
 
-UserSchema.methods.comparePassword = function (password, cb) {
-  bcrypt.compare(password, this.password, (err, isMatch) => {
-    if (err) {
-      return cb(err)
-    } else {
-      if (!isMatch) {
-        return cb(null, isMatch)
-      }
-      return cb(null, this)
-    }
-  })
+UserSchema.methods.comparePassword = function (password) {
+  return bcrypt.compare(password, this.password)
+}
+
+UserSchema.methods.toJSON = function () {
+  const user = this.toObject()
+  delete user.password
+  return user
 }
 
 const User = mongoose.model('User', UserSchema)
