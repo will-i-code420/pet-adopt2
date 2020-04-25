@@ -14,7 +14,6 @@ export const mutations = {
 export const actions = {
   async login ({ commit }, userInfo) {
     const user = await this.$axios.post('/login', userInfo)
-    console.log(user)
     commit('SET_USER', user.data.user)
   },
   async register ({ commit }, userInfo) {
