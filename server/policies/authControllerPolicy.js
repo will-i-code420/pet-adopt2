@@ -7,7 +7,7 @@ module.exports = {
       email: Joi.string().email({ minDomainSegments: 2 }).required(),
       username: Joi.string().min(4).max(30).required(),
       password: Joi.string().regex(/^[a-zA-Z0-9]{8,32}$/),
-      role: Joi.string().required()
+      role: Joi.string()
     })
     const { error, value } = schema.validate(req.body)
     if (error) {
