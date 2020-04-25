@@ -18,8 +18,13 @@ module.exports = {
     const {name, password} = req.body
     try {
       const user = await User.findOne({ username: name })
+      if (!user) {
+        return res.status(404).json({
+          msg: 'Incorrect Login Credentials'
+        })
+      }
       const validPassword = await user.comparePassword(password)
-      if (!user || !validPassword) {
+      if (!validPassword) {
         return res.status(404).json({
           msg: 'Incorrect Login Credentials'
         })
