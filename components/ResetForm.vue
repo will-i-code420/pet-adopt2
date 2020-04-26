@@ -13,10 +13,10 @@
       placeholder="example@email.com"
     ></b-form-input>
     </b-form-group>
-    <b-button variant="primary" class="mt-3 px-5 py-2" @click="submitPasswordReset">
+    <b-button variant="primary" class="mt-3 px-5 py-2" @click="submitReset('/resetPassword')">
       Reset Password
     </b-button>
-    <b-button variant="primary" class="mt-3 px-5 py-2" @click="getUsername">
+    <b-button variant="primary" class="mt-3 px-5 py-2" @click="submitReset('/getUsername')">
       Get Username
     </b-button>
     <b-alert
@@ -49,30 +49,14 @@ export default {
     }
   },
   methods: {
-    async submitPasswordReset () {
+    async submitReset (route) {
       try {
         if (this.error) {
           this.errorMsg = '',
-          this.error = true
+          this.error = false
         }
-        alert('Submitting Password reset')
-        const res = await this.$axios.post('/resetPassword', this.email)
-        this.resetMsg = res.data.msg
-        this.submitted = true
-      } catch (e) {
-        this.errorMsg = e.response.data.msg
-        this.error = true
-      }
-
-    },
-    async getUsername () {
-      try {
-        if (this.error) {
-          this.errorMsg = '',
-          this.error = true
-        }
-        alert('Requesting Username')
-        const res = await this.$axios.post('/getUsername', this.email)
+        alert(`Submitting ${route} request`)
+        const res = await this.$axios.post(`${route}`, this.email)
         this.resetMsg = res.data.msg
         this.submitted = true
       } catch (e) {
