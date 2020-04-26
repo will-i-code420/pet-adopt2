@@ -11,7 +11,6 @@ module.exports = {
     })
     const { error, value } = schema.validate(req.body)
     if (error) {
-      console.log(error)
       switch(error.details[0].context.key) {
         case 'name':
           res.status(409).json({
@@ -35,6 +34,27 @@ module.exports = {
           1. Must contain the following characters: lowercase, uppercase, or numbers. No spaces or special characters
           <br>
           2. Must be between 8 and 32 characters in length`
+        })
+        break;
+        default:
+        res.status(409).json({
+          msg: 'An Error Occured, please try again'
+        })
+      }
+    } else {
+      next()
+    }
+  },
+  reset (req, res, next) {
+    const schema = Joi.object({
+      email: Joi.string().email({ minDomainSegments: 2 }).required()
+    })
+    const { error, value } = schema.validate(req.body)
+    if (error) {
+      switch(error.details[0].context.key) {
+        case 'email':
+        res.status(409).json({
+          msg: 'Please provide valid email address'
         })
         break;
         default:

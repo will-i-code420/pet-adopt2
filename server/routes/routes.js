@@ -18,4 +18,6 @@ module.exports = app => {
   app.get('/cats/:id', catController.getSingleCat)
   app.post('/login', authController.login)
   app.post('/register', authControllerPolicy.register, authController.register)
+  app.post('/resetPassword', authControllerPolicy.reset, authController.resetPassword)
+  app.post('/getUsername', authControllerPolicy.reset, authController.getUsername)
 }
