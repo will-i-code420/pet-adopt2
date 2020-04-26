@@ -41,10 +41,11 @@ module.exports = {
   },
   // need to implement actual send email functionality for below routes
   async resetPassword (req, res) {
+    const email = req.body.email
     try {
-      const user = await User.findOne({ email: req.body })
+      const user = await User.findOne({ email: email})
       res.status(200).json({
-        msg: `Thank you, we have sent an email to ${req.body} with a link to reset your password.  This link will expire in 30 minutes`
+        msg: `Thank you, we have sent an email to ${email} with a link to reset your password.  This link will expire in 30 minutes`
       })
     } catch (e) {
       console.log(e)
@@ -54,10 +55,11 @@ module.exports = {
     }
   },
   async getUsername (req, res) {
+    const email = req.body.email
     try {
-      const user = await User.findOne({ email: req.body })
+      const user = await User.findOne({ email: email })
       res.status(200).json({
-        msg: `Thank you, we have sent an email to ${req.body} with your user name if it exists`
+        msg: `Thank you, we have sent an email to ${email} with your user name if it exists`
       })
     } catch (e) {
       console.log(e)

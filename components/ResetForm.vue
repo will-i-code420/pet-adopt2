@@ -7,7 +7,7 @@
     >
     <b-form-input
       id="email"
-      v-model="email"
+      v-model="resetForm.email"
       type="email"
       required
       placeholder="example@email.com"
@@ -41,7 +41,9 @@ export default {
   name: 'ResetForm',
   data () {
     return {
-      email: '',
+      resetForm: {
+        email: ''
+      },
       submitted: false,
       resetMsg: '',
       error: false,
@@ -52,11 +54,10 @@ export default {
     async submitReset (route) {
       try {
         if (this.error) {
-          this.errorMsg = '',
+          this.errorMsg = ''
           this.error = false
         }
-        alert(`Submitting ${route} request`)
-        const res = await this.$axios.post(`${route}`, this.email)
+        const res = await this.$axios.post(`${route}`, this.resetForm)
         this.resetMsg = res.data.msg
         this.submitted = true
       } catch (e) {
