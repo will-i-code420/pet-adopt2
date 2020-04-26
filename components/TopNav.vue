@@ -6,8 +6,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown text="Animals" right>
-            <b-dropdown-item to="/cats">Cats</b-dropdown-item>
-            <b-dropdown-item to="/dogs">Dogs</b-dropdown-item>
+            <b-dropdown-item to="/cats" class="text-center">Cats</b-dropdown-item>
+            <b-dropdown-item to="/dogs" class="text-center">Dogs</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item to="/contact">Contact</b-nav-item>
           <b-nav-form @submit.prevent="searchAnimals">
@@ -16,6 +16,8 @@
               Search
             </b-button>
           </b-nav-form>
+          <TopNavLogin v-if="!user.username" />
+          <TopNavLoggedIn v-else :username="user.username" :id="user._id" />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -23,12 +25,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import TopNavLogin from '~/components/TopNavLogin'
+import TopNavLoggedIn from '~/components/TopNavLoggedIn'
+
 export default {
   name: 'TopNav',
+  components: {
+    TopNavLogin,
+    TopNavLoggedIn
+  },
   data () {
     return {
       searchQuery: ''
     }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user.user
+    })
   }
 }
 </script>

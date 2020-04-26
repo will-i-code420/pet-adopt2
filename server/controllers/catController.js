@@ -9,7 +9,7 @@ module.exports = {
       })
     } catch (e) {
       console.log(e)
-      res.status().json({
+      res.status(500).json({
         msg: 'An error occured, please try again'
       })
     }
