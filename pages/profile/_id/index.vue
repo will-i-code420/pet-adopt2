@@ -1,11 +1,28 @@
 <template>
   <section id="user-profile">
-    <h1>User Profile</h1>
+    <b-container>
+      <b-row>
+        <b-col cols="8" offset="2">
+          <ProfileCard :user="user" />
+        </b-col>
+      </b-row>
+    </b-container>
   </section>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import ProfileCard from '~/components/ProfileCard'
+
 export default {
+  components: {
+    ProfileCard
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user.user
+    })
+  },
   head () {
     return {
       title: 'Pet Adopt User Profile',
