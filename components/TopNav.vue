@@ -17,7 +17,7 @@
             </b-button>
           </b-nav-form>
           <TopNavLogin v-if="!user.username" />
-          <TopNavLoggedIn v-else :username="user.username" :id="user._id" />
+          <TopNavLoggedIn v-else :username="user.username" :id="user._id" :role="user.role" />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

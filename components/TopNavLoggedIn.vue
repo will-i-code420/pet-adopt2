@@ -1,6 +1,6 @@
 <template>
   <b-nav-item-dropdown :text="username" right>
-    <b-dropdown-item to="dashboard" class="text-center" v-if="role != user">
+    <b-dropdown-item to="dashboard" class="text-center" v-if="role !== 'user'">
       Dashboard
     </b-dropdown-item>
     <b-dropdown-item :to="/profile/ + id" class="text-center">
@@ -18,7 +18,8 @@ export default {
   name: 'TopNavLoggedIn',
   props: {
     username: String,
-    id: String
+    id: String,
+    role: String
   },
   methods: {
     async logoutUser () {
