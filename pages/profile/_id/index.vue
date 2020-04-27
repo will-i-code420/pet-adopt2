@@ -1,9 +1,8 @@
 <template>
   <section id="user-profile">
     <b-container>
-      <h1>{{ user.name }} Profile</h1>
       <b-row>
-        <b-col>
+        <b-col cols="8" offset="2">
           <ProfileCard :user="user" />
         </b-col>
       </b-row>
