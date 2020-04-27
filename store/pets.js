@@ -29,3 +29,14 @@ export const actions = {
     commit('SET_CURRENT_PET', pet.data.pet)
   }
 }
+
+export const getters = {
+  getPetsCount (state) {
+    return state.cats.length + state.dogs.length
+  },
+  getAdoptedPetsCount (state) {
+    const cats = state.cats.filter(cat => cat.adopted === true)
+    const dogs = state.dogs.filter(dog => dog.adopted === true)
+    return cats.length + dogs.length
+  }
+}
