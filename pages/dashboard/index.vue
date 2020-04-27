@@ -1,7 +1,7 @@
 <template>
   <section id="dashboard-container" class="my-5">
-    <b-container>
-      <h1 class="text-center mb-3">
+    <b-container  class="text-center">
+      <h1 class="mb-3">
         Dashboard Page
       </h1>
       <b-row>
@@ -22,9 +22,16 @@
         <b-col md="4">
           <b-card>
             <b-card-text>
-              Contacts To Respond To
+              {{ contactCount }} Contacts Needing Responses
             </b-card-text>
           </b-card>
+        </b-col>
+      </b-row>
+      <b-row class="my-3">
+        <b-col>
+          <h2>
+            Place Holder for Rest Of Dashboard
+          </h2>
         </b-col>
       </b-row>
     </b-container>
@@ -36,13 +43,17 @@ import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 
 export default {
+  mounted () {
+    this.$store.dispatch('contacts/getAllContacts')
+  },
   computed: {
     ...mapState({
       user: state => state.user.user
     }),
     ...mapGetters({
       petCount: 'pets/getPetsCount',
-      adoptCount: 'pets/getAdoptedPetsCount'
+      adoptCount: 'pets/getAdoptedPetsCount',
+      contactCount: 'contacts/getContactCount'
     })
   },
   head () {
