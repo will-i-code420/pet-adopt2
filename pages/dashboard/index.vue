@@ -17,6 +17,9 @@
             <b-card-text>
               {{ petCount }} Pets For Adoption
             </b-card-text>
+            <b-button variant="primary" @click="addPet">
+              Add New Pet
+            </b-button>
           </b-card>
         </b-col>
         <b-col md="4">
@@ -24,10 +27,13 @@
             <b-card-text>
               {{ contactCount }} Contacts Needing Responses
             </b-card-text>
+            <b-button variant="primary" @click="respondContact">
+              Respond To Contacts
+            </b-button>
           </b-card>
         </b-col>
       </b-row>
-      <b-row class="my-3">
+      <b-row class="my-4">
         <b-col>
           <h2>
             Place Holder for Rest Of Dashboard
@@ -46,6 +52,12 @@ export default {
   mounted () {
     this.$store.dispatch('contacts/getAllContacts')
   },
+  data () {
+    return {
+      addingPet: false,
+      respondingContacts: false
+    }
+  },
   computed: {
     ...mapState({
       user: state => state.user.user
@@ -55,6 +67,16 @@ export default {
       adoptCount: 'pets/getAdoptedPetsCount',
       contactCount: 'contacts/getContactCount'
     })
+  },
+  methods: {
+    addPet () {
+      alert('add a new pet form')
+      this.addingPet = !this.addingPet
+    },
+    respondContact () {
+      alert('display contacts to respond list')
+      this.respondingContacts = !this.respondingContacts
+    }
   },
   head () {
     return {
