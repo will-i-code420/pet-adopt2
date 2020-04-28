@@ -1,9 +1,6 @@
 <template>
   <section id="dashboard-container" class="my-5">
     <b-container  class="text-center">
-      <h1 class="mb-3">
-        Dashboard Page
-      </h1>
       <b-row>
         <b-col md="4">
           <b-card>
