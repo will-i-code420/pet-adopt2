@@ -20,7 +20,17 @@ export default {
       fields: [
         { key: 'name' },
         { key: 'email' },
-        { key: 'petId', label: 'Pet ID' },
+        {
+          key: 'petId',
+          label: 'Pet Interest',
+          formatter: (value, key, item) => {
+            if (item.petId === 'none') {
+              return 'NO'
+            } else {
+              return 'YES'
+            }
+          }
+        },
         { key: 'followUpDate', label: 'Follow Up Date', sortable: true },
         { key: 'action' }
       ]
@@ -30,11 +40,6 @@ export default {
     ...mapState({
       allContacts: state => state.contacts.contacts.filter(contact => contact.followUpRequired === true)
     })
-  },
-  methods: {
-    selectContact (id) {
-      alert(id)
-    }
   }
 }
 </script>

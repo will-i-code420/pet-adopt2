@@ -6,7 +6,7 @@ module.exports = {
       name: Joi.string().min(3).required(),
       email: Joi.string().email({ minDomainSegments: 2 }).required(),
       info: Joi.string().min(10).required(),
-      animalId: Joi.string().min(4).max(24)
+      petId: Joi.string().min(4).max(24)
     })
     const { error, value } = schema.validate(req.body)
     if (error) {

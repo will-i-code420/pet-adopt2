@@ -14,9 +14,6 @@
             <b-card-text>
               {{ petCount }} Pets For Adoption
             </b-card-text>
-            <b-button variant="primary" @click="addPet">
-              Add New Pet
-            </b-button>
           </b-card>
         </b-col>
         <b-col md="4">
@@ -24,25 +21,28 @@
             <b-card-text>
               {{ contactCount }} Contacts Needing Responses
             </b-card-text>
-            <b-button variant="primary" @click="respondContact">
-              Respond To Contacts
-            </b-button>
           </b-card>
         </b-col>
       </b-row>
       <b-row class="my-4">
         <b-col>
-          <h2>
-            Place Holder for Rest Of Dashboard
-          </h2>
+          <h3 class="mb-3">
+            Select An Action
+          </h3>
+          <b-button variant="primary" @click="respondContact" class="mr-2">
+            Respond To Contacts
+          </b-button>
+          <b-button variant="primary" @click="addPet" class="ml-2">
+            Add New Pet
+          </b-button>
         </b-col>
       </b-row>
-      <b-form-row v-if="addingPet">
+      <b-form-row v-if="addingPet"  class="my-4">
         <b-col cols="8" offset="2">
           <AddPetForm />
         </b-col>
       </b-form-row>
-      <b-row v-if="respondingContacts">
+      <b-row v-if="respondingContacts"  class="my-4">
         <b-col>
           <AllContactsTable />
         </b-col>
@@ -68,7 +68,7 @@ export default {
   data () {
     return {
       addingPet: false,
-      respondingContacts: false
+      respondingContacts: true
     }
   },
   computed: {
@@ -83,9 +83,15 @@ export default {
   },
   methods: {
     addPet () {
+      if (this.respondingContacts) {
+        this.respondingContacts = false
+      }
       this.addingPet = !this.addingPet
     },
     respondContact () {
+      if (this.addingPet) {
+        this.addingPet = false
+      }
       this.respondingContacts = !this.respondingContacts
     }
   },
