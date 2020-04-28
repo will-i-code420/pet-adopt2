@@ -89,7 +89,6 @@ export default {
       this.addingPet = !this.addingPet
     },
     respondContact () {
-      alert('display contacts to respond list')
       this.respondingContacts = !this.respondingContacts
     }
   },

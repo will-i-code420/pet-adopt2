@@ -123,14 +123,18 @@ export default {
   },
   methods: {
     async addNewPet () {
+      const payload = {
+        route: this.animal,
+        petForm: this.newPetForm
+      }
       try {
         if (this.error) {
           this.error = false
           this.errorMsg = ''
         }
-        const res = await this.$axios.post(`${this.animal}`, this.newPetForm)
+        const res = await this.$store.dispatch('pets/addNewPet', payload)
         this.submitted = true
-        this.submittedMsg = res.data.msg
+        this.submittedMsg = `${this.newPetForm.name} has been added`
         this.clearPetForm()
       } catch (e) {
         this.error = true
