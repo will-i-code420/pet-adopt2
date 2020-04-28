@@ -132,7 +132,7 @@ export default {
           this.error = false
           this.errorMsg = ''
         }
-        const res = await this.$store.dispatch('pets/addNewPet', payload)
+        await this.$store.dispatch('pets/addNewPet', payload)
         this.submitted = true
         this.submittedMsg = `${this.newPetForm.name} has been added`
         this.clearPetForm()
