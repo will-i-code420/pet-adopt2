@@ -21,7 +21,6 @@ export default {
         { key: 'name' },
         { key: 'email' },
         { key: 'petId', label: 'Pet ID' },
-        { key: 'followUpRequired', label: 'Needs Follow Up' },
         { key: 'followUpDate', label: 'Follow Up Date', sortable: true },
         { key: 'action' }
       ]
@@ -29,7 +28,7 @@ export default {
   },
   computed: {
     ...mapState({
-      allContacts: state => state.contacts.contacts
+      allContacts: state => state.contacts.contacts.filter(contact => contact.followUpRequired === true)
     })
   },
   methods: {
