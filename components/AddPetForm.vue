@@ -1,6 +1,9 @@
 <template>
   <section id="add-pet-container">
-    <b-form>
+    <h3 class="my-3">
+      Add New Pet
+    </h3>
+    <b-form class="mx-5">
       <b-form-group label="Animal Type">
       <b-form-checkbox-group
         v-model="animal"
@@ -74,7 +77,7 @@
         max-rows="6"
       ></b-form-textarea>
       </b-form-group>
-      <b-button variant="primary" class="mt-3 px-5 py-2" @click="addNewPet">
+      <b-button variant="primary" class="my-3 px-5 py-2" @click="addNewPet">
         Add Pet
       </b-button>
       <b-alert
@@ -100,17 +103,17 @@ export default {
   name: 'AddPetForm',
   data () {
     return {
-      animal: '',
+      animal: [],
       animalOptions: [
         { text: 'Cat', value: '/cats' },
         { text: 'Dog', value: '/dogs' }
-      ]
+      ],
       newPetForm: {
         name: '',
         breed: '',
         age: Number(),
         description: '',
-        notes: []
+        notes: ''
       },
       error: false,
       errorMsg: '',
@@ -119,7 +122,7 @@ export default {
     }
   },
   methods: {
-    addNewPet () {
+    async addNewPet () {
       try {
         if (this.error) {
           this.error = false
@@ -135,16 +138,19 @@ export default {
       }
     },
     clearPetForm () {
-      this.animal = ''
+      this.animal = []
       this.newPetForm.name = ''
       this.newPetForm.breed = ''
       this.newPetForm.age = Number()
       this.newPetForm.description = ''
-      this.newPetForm.notes = []
+      this.newPetForm.notes = ''
     }
   }
 }
 </script>
 
 <style scoped>
+#add-pet-container {
+  border: 2px solid black;
+}
 </style>

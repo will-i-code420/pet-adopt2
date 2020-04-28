@@ -41,12 +41,13 @@
         </b-col>
       </b-row>
       <b-form-row v-if="addingPet">
-        <b-col>
+        <b-col cols="8" offset="2">
           <AddPetForm />
         </b-col>
       </b-form-row>
-      <b-row>
+      <b-row v-if="respondingContacts">
         <b-col>
+          <AllContactsTable />
         </b-col>
       </b-row>
     </b-container>
@@ -57,10 +58,12 @@
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 import AddPetForm from '~/components/AddPetForm'
+import AllContactsTable from '~/components/AllContactsTable'
 
 export default {
   components: {
-    AddPetForm
+    AddPetForm,
+    AllContactsTable
   },
   mounted () {
     this.$store.dispatch('contacts/getAllContacts')
