@@ -18,5 +18,10 @@ export const actions = {
 export const getters = {
   getContactCount (state) {
     return state.contacts.filter(contact => contact.followUpRequired === true).length
+  },
+  getSelectedContact (state) {
+    return (id) => {
+      return state.contacts.filter(contact => contact._id === id)
+    }
   }
 }

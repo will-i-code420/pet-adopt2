@@ -27,6 +27,10 @@ export const actions = {
     const animal = species.substring(0, 4)
     const pet = await this.$axios.get(`/${animal}/${id}`)
     commit('SET_CURRENT_PET', pet.data.pet)
+  },
+  async addNewPet ({ dispatch }, { route, petForm }) {
+    await this.$axios.post(`${route}`, petForm)
+    dispatch('getPets')
   }
 }
 

@@ -93,7 +93,7 @@ export default {
         name: '',
         email: '',
         info: '',
-        animalId: ''
+        petId: ''
       },
       error: false,
       errorMsg: '',
@@ -110,7 +110,7 @@ export default {
           this.errorMsg = ''
         }
         if (this.animalInquiry) {
-          this.contactForm.animalId = this.pet._id
+          this.contactForm.petId = this.pet._id
         }
         const res = await this.$axios.post('/contact', this.contactForm)
         this.submitted = true
