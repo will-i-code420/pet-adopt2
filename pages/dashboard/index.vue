@@ -40,6 +40,15 @@
           </h2>
         </b-col>
       </b-row>
+      <b-form-row v-if="addingPet">
+        <b-col>
+          <AddPetForm />
+        </b-col>
+      </b-form-row>
+      <b-row>
+        <b-col>
+        </b-col>
+      </b-row>
     </b-container>
   </section>
 </template>
@@ -47,8 +56,12 @@
 <script>
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
+import AddPetForm from '~/components/AddPetForm'
 
 export default {
+  components: {
+    AddPetForm
+  },
   mounted () {
     this.$store.dispatch('contacts/getAllContacts')
   },
@@ -70,7 +83,6 @@ export default {
   },
   methods: {
     addPet () {
-      alert('add a new pet form')
       this.addingPet = !this.addingPet
     },
     respondContact () {
