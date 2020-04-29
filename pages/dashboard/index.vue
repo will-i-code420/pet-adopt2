@@ -33,7 +33,7 @@
             Respond To Contacts
           </b-button>
           <b-button variant="primary" @click="viewPets" class="ml-2">
-            View Unadopted Pet
+            View Unadopted Pets
           </b-button>
           <b-button variant="primary" @click="addPet" class="ml-2">
             Add New Pet
@@ -46,7 +46,7 @@
         </b-col>
       </b-form-row>
       <b-row v-if="viewingPets" class="my-4">
-        <b-col>
+        <b-col cols="10" offset="1">
           <AllPetsTable />
         </b-col>
       </b-row>

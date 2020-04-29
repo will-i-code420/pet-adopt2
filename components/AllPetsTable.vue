@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AllPetsTable',
@@ -26,7 +26,7 @@ export default {
       fields: [
         { key: 'name' },
         { key: 'dateAdded', label: 'List Date', sortable: true },
-        { key: 'action' },
+        { key: 'action' }
       ]
     }
   },
