@@ -13,17 +13,13 @@ export const actions = {
     const pets = await this.$axios.get('/pets')
     commit('SET_ALL_PETS', pets.data.pets)
   },
-  async getSinglePet ({ commit }, { species, id }) {
-    const route = species.substring(0, 4)
-    const pet = await this.$axios.get(`/${route}/${id}`)
-    commit('SET_CURRENT_PET', pet.data.pet)
+  async addNewPet ({ dispatch }, petForm) {
+    await this.$axios.post('/pets', petForm)
+    dispatch('getAllPets')
   },
-  async addNewPet ({ dispatch }, { route, petForm }) {
-    await this.$axios.post(`${route}`, petForm)
-    dispatch('getPets')
-  },
-  async updatePet ({ dispatch }, { route, id, info }) {
-    await this.$axios.put(`${route}/${id}`, info)
+  async updatePet ({ dispatch }, info) {
+    await this.$axios.put(`/pets/${id}`, info)
+    dispatch('getAllPets')
   }
 }
 

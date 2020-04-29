@@ -10,7 +10,8 @@ module.exports = app => {
   app.post('/pets', petController.addPet)
   app.put('/pets/:id', petController.updateSinglePet)
   app.get('/pets', petController.getAllPet)
-  app.get('/pets/:id', petController.getSinglePet)
+  /* no need for route currently, may delete
+  app.get('/pets/:id', petController.getSinglePet) */
   app.post('/login', authController.login)
   app.post('/register', authControllerPolicy.register, authController.register)
   app.post('/resetPassword', authControllerPolicy.reset, authController.resetPassword)
