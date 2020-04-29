@@ -24,18 +24,15 @@ export const actions = {
 }
 
 export const getters = {
-  getPetsCount (state) {
-    return state.cats.length + state.dogs.length
+  getPetCount (state) {
+    return state.pets.length
   },
   getAdoptedPetsCount (state) {
-    const cats = state.cats.filter(cat => cat.adopted === true)
-    const dogs = state.dogs.filter(dog => dog.adopted === true)
-    return cats.length + dogs.length
+    const pets = state.pets.filter(pet => pet.adopted === true)
+    return pets.length
   },
   getUnadoptedPets (state) {
-    const cats = state.cats.filter(cat => cat.adopted === false)
-    const dogs = state.dogs.filter(dog => dog.adopted === false)
-    const pets = [...cats, ...dogs]
+    const pets = state.pets.filter(pet => pet.adopted === false)
     return pets
   }
 }
