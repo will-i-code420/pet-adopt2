@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
-const CatSchema = new Schema({
+const PetSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -18,6 +18,10 @@ const CatSchema = new Schema({
     type: String,
     required: true
   },
+  species: {
+    type: String,
+    required: true
+  },
   dateAdded: {
     type: Date,
     default: Date.now
@@ -29,6 +33,6 @@ const CatSchema = new Schema({
   notes: [String]
 })
 
-const Cat = mongoose.model('Cat', CatSchema)
+const Pet = mongoose.model('Pet', PetSchema)
 
-module.exports = Cat
+module.exports = Pet
