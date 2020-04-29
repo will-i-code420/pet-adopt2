@@ -5,11 +5,11 @@
         <b-button variant="primary" size="sm" :to="'dashboard/edit-pet/' + data.item._id">
           Edit
         </b-button>
-        <b-button variant="primary" size="sm" @click="deletePet(data.item._id)">
-          Delete
-        </b-button>
         <b-button variant="primary" size="sm" @click="markAdopted(data.item._id)">
           Mark Adopted
+        </b-button>
+        <b-button v-if="isAdmin" variant="primary" size="sm" @click="deletePet(data.item._id)">
+          Delete
         </b-button>
       </template>
     </b-table>
@@ -32,7 +32,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      allPets: 'pets/getUnadoptedPets'
+      allPets: 'pets/getUnadoptedPets',
+      isAdmin: 'user/isAdmin'
     })
   },
   methods: {
