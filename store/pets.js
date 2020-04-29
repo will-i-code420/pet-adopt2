@@ -42,5 +42,11 @@ export const getters = {
     const cats = state.cats.filter(cat => cat.adopted === true)
     const dogs = state.dogs.filter(dog => dog.adopted === true)
     return cats.length + dogs.length
+  },
+  getUnadoptedPets (state) {
+    const cats = state.cats.filter(cat => cat.adopted === false)
+    const dogs = state.dogs.filter(dog => dog.adopted === false)
+    const pets = [...cats, ...dogs]
+    return pets
   }
 }

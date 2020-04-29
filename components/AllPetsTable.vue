@@ -9,7 +9,7 @@
           Delete
         </b-button>
         <b-button variant="primary" size="sm" @click="markAdopted(data.item._id)">
-          Pet Adopted
+          Mark Adopted
         </b-button>
       </template>
     </b-table>
@@ -23,11 +23,17 @@ export default {
   name: 'AllPetsTable',
   data () {
     return {
-
+      fields: [
+        { key: 'name' },
+        { key: 'dateAdded', label: 'List Date', sortable: true },
+        { key: 'action' },
+      ]
     }
   },
   computed: {
-
+    ...mapGetters({
+      allPets: 'pets/getUnadoptedPets'
+    })
   },
   methods: {
     deletePet (id) {
