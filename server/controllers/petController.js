@@ -29,7 +29,7 @@ module.exports = {
     }
   },
   /* no need for this method, may delete along with route
-  
+
   async getSinglePet (req, res) {
     try {
       const pet = await Pet.findById(req.params.id)
@@ -49,6 +49,19 @@ module.exports = {
       res.status(202).json({
         pet: pet,
         msg: `Updated ${req.body.name} information`
+      })
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: 'An error occured please try again'
+      })
+    }
+  },
+  async deleteSinglePet (req, res) {
+    try {
+      const pet = Pet.findByIdAndDelete(req.params.id)
+      res.status(202).json({
+        msg: 'Deleted Pet'
       })
     } catch (e) {
       console.log(e)
