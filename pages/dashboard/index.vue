@@ -87,7 +87,7 @@ export default {
       user: state => state.user.user
     }),
     ...mapGetters({
-      petCount: 'pets/getPetsCount',
+      petCount: 'pets/getPetCount',
       adoptCount: 'pets/getAdoptedPetsCount',
       contactCount: 'contacts/getContactCount'
     })

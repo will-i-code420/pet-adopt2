@@ -36,5 +36,10 @@ export const getters = {
   getUnadoptedPets (state) {
     const pets = state.pets.filter(pet => pet.adopted === false)
     return pets
+  },
+  getSelectedPet (state) {
+    return (id) => {
+      return state.pets.filter(pet => pet._id === id)
+    }
   }
 }
