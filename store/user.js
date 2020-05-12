@@ -24,3 +24,9 @@ export const actions = {
     commit('LOGOUT_USER')
   }
 }
+
+export const getters = {
+  isAdmin (state) {
+    return state.user.role === 'admin'
+  }
+}

@@ -32,17 +32,25 @@
           <b-button variant="primary" @click="respondContact" class="mr-2">
             Respond To Contacts
           </b-button>
+          <b-button variant="primary" @click="viewPets" class="ml-2">
+            View Unadopted Pets
+          </b-button>
           <b-button variant="primary" @click="addPet" class="ml-2">
             Add New Pet
           </b-button>
         </b-col>
       </b-row>
-      <b-form-row v-if="addingPet"  class="my-4">
+      <b-form-row v-if="addingPet" class="my-4">
         <b-col cols="8" offset="2">
           <AddPetForm />
         </b-col>
       </b-form-row>
-      <b-row v-if="respondingContacts"  class="my-4">
+      <b-row v-if="viewingPets" class="my-4">
+        <b-col cols="10" offset="1">
+          <AllPetsTable />
+        </b-col>
+      </b-row>
+      <b-row v-if="respondingContacts" class="my-4">
         <b-col>
           <AllContactsTable />
         </b-col>
@@ -56,11 +64,13 @@ import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 import AddPetForm from '~/components/AddPetForm'
 import AllContactsTable from '~/components/AllContactsTable'
+import AllPetsTable from '~/components/AllPetsTable'
 
 export default {
   components: {
     AddPetForm,
-    AllContactsTable
+    AllContactsTable,
+    AllPetsTable
   },
   mounted () {
     this.$store.dispatch('contacts/getAllContacts')
@@ -68,6 +78,7 @@ export default {
   data () {
     return {
       addingPet: false,
+      viewingPets: false,
       respondingContacts: true
     }
   },
@@ -83,16 +94,25 @@ export default {
   },
   methods: {
     addPet () {
-      if (this.respondingContacts) {
+      if (this.respondingContacts || this.viewingPets) {
         this.respondingContacts = false
+        this.viewingPets = false
       }
       this.addingPet = !this.addingPet
     },
     respondContact () {
-      if (this.addingPet) {
+      if (this.addingPet || this.viewingPets) {
         this.addingPet = false
+        this.viewingPets = false
       }
       this.respondingContacts = !this.respondingContacts
+    },
+    viewPets () {
+      if (this.addingPet || this.respondingContacts) {
+        this.addingPet = false
+        this.respondingContacts = false
+      }
+      this.viewingPets = !this.viewingPets
     }
   },
   head () {

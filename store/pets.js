@@ -1,46 +1,38 @@
 export const state = () => ({
-  cats: [],
-  dogs: [],
-  currentPet: {}
+  pets: []
 })
 
 export const mutations = {
-  SET_CATS (state, cats) {
-    state.cats = cats
-  },
-  SET_DOGS (state, dogs) {
-    state.dogs = dogs
-  },
-  SET_CURRENT_PET (state, pet) {
-    state.currentPet = pet
+  SET_ALL_PETS (state, pets) {
+    state.pets = pets
   }
 }
 
 export const actions = {
-  async getPets ({ commit }) {
-    const dogs = await this.$axios.get('/dogs')
-    const cats = await this.$axios.get('/cats')
-    commit('SET_DOGS', dogs.data.dogs)
-    commit('SET_CATS', cats.data.cats)
+  async getAllPets ({ commit }) {
+    const pets = await this.$axios.get('/pets')
+    commit('SET_ALL_PETS', pets.data.pets)
   },
-  async getSinglePet ({ commit }, { species, id }) {
-    const animal = species.substring(0, 4)
-    const pet = await this.$axios.get(`/${animal}/${id}`)
-    commit('SET_CURRENT_PET', pet.data.pet)
+  async addNewPet ({ dispatch }, petForm) {
+    await this.$axios.post('/pets', petForm)
+    dispatch('getAllPets')
   },
-  async addNewPet ({ dispatch }, { route, petForm }) {
-    await this.$axios.post(`${route}`, petForm)
-    dispatch('getPets')
+  async updatePet ({ dispatch }, info) {
+    await this.$axios.put(`/pets/${id}`, info)
+    dispatch('getAllPets')
   }
 }
 
 export const getters = {
-  getPetsCount (state) {
-    return state.cats.length + state.dogs.length
+  getPetCount (state) {
+    return state.pets.length
   },
   getAdoptedPetsCount (state) {
-    const cats = state.cats.filter(cat => cat.adopted === true)
-    const dogs = state.dogs.filter(dog => dog.adopted === true)
-    return cats.length + dogs.length
+    const pets = state.pets.filter(pet => pet.adopted === true)
+    return pets.length
+  },
+  getUnadoptedPets (state) {
+    const pets = state.pets.filter(pet => pet.adopted === false)
+    return pets
   }
 }
