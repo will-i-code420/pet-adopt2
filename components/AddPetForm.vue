@@ -4,13 +4,15 @@
       Add New Pet
     </h3>
     <b-form class="mx-5">
-      <b-form-group label="Animal Type">
-      <b-form-checkbox-group
-        v-model="animal"
-        :options="animalOptions"
-        name="animal type"
-      ></b-form-checkbox-group>
-    </b-form-group>
+      <b-form-group label="Animal Species">
+        <b-form-radio-group
+          id="species"
+          v-model="newPetForm.species"
+          :options="animalOptions"
+          name="species-options"
+          required
+        ></b-form-radio-group>
+      </b-form-group>
       <b-form-group
         id="input-group-name"
         label="Pet Name:"
@@ -103,16 +105,16 @@ export default {
   name: 'AddPetForm',
   data () {
     return {
-      animal: [],
       animalOptions: [
-        { text: 'Cat', value: '/cats' },
-        { text: 'Dog', value: '/dogs' }
+        { text: 'Cat', value: 'cat' },
+        { text: 'Dog', value: 'dog' }
       ],
       newPetForm: {
         name: '',
         breed: '',
         age: Number(),
         description: '',
+        species: '',
         notes: ''
       },
       error: false,
@@ -123,16 +125,12 @@ export default {
   },
   methods: {
     async addNewPet () {
-      const payload = {
-        route: this.animal,
-        petForm: this.newPetForm
-      }
       try {
         if (this.error) {
           this.error = false
           this.errorMsg = ''
         }
-        await this.$store.dispatch('pets/addNewPet', payload)
+        await this.$store.dispatch('pets/addNewPet', this.newPetForm)
         this.submitted = true
         this.submittedMsg = `${this.newPetForm.name} has been added`
         this.clearPetForm()
@@ -142,11 +140,11 @@ export default {
       }
     },
     clearPetForm () {
-      this.animal = []
       this.newPetForm.name = ''
       this.newPetForm.breed = ''
       this.newPetForm.age = Number()
       this.newPetForm.description = ''
+      this.newPetForm.species = ''
       this.newPetForm.notes = ''
     }
   }
