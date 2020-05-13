@@ -16,13 +16,11 @@ export const actions = {
   async addNewPet ({ dispatch }, petForm) {
     await this.$axios.post('/pets', petForm)
     dispatch('getAllPets')
-  }
-  /* need to finish with edit-pet-page
-  async updatePet ({ dispatch }, info) {
-    await this.$axios.put(`/pets/${id}`, info)
+  },
+  async updatePet ({ dispatch }, { id, petUpdate }) {
+    await this.$axios.put(`/pets/${id}`, petUpdate)
     dispatch('getAllPets')
   }
-  */
 }
 
 export const getters = {
