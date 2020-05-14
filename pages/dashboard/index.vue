@@ -1,6 +1,6 @@
 <template>
   <section id="dashboard-container" class="my-5">
-    <b-container  class="text-center">
+    <b-container class="text-center">
       <b-row>
         <b-col md="4">
           <b-card>
@@ -87,7 +87,7 @@ export default {
       user: state => state.user.user
     }),
     ...mapGetters({
-      petCount: 'pets/getPetsCount',
+      petCount: 'pets/getPetCount',
       adoptCount: 'pets/getAdoptedPetsCount',
       contactCount: 'contacts/getContactCount'
     })

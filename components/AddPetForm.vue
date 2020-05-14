@@ -4,13 +4,15 @@
       Add New Pet
     </h3>
     <b-form class="mx-5">
-      <b-form-group label="Animal Type">
-      <b-form-checkbox-group
-        v-model="animal"
-        :options="animalOptions"
-        name="animal type"
-      ></b-form-checkbox-group>
-    </b-form-group>
+      <b-form-group label="Animal Species">
+        <b-form-radio-group
+          id="species"
+          v-model="newPetForm.species"
+          :options="animalOptions"
+          name="species-options"
+          required
+        ></b-form-radio-group>
+      </b-form-group>
       <b-form-group
         id="input-group-name"
         label="Pet Name:"
@@ -50,18 +52,32 @@
         placeholder="Animal Age"
       ></b-form-input>
       </b-form-group>
+      <b-form-group label="Special Notes">
+        <b-form-radio-group
+          id="special-notes"
+          v-model="addSpecialNotes"
+          :options="noteOptions"
+          name="special-notes"
+        ></b-form-radio-group>
+      </b-form-group>
       <b-form-group
         id="input-group-notes"
         label="Special Notes:"
         label-for="notes"
+        v-if="addSpecialNotes"
       >
       <b-form-input
         id="notes"
-        v-model="newPetForm.notes"
+        v-model="specialNote"
         type="text"
-        required
         placeholder="Any meds, conditions, etc..."
       ></b-form-input>
+      <b-button variant="primary" class="my-3 px-5 py-2" @click="addNote">
+        Add Note
+      </b-button>
+      <ul class="special-notes">
+        <li v-for="(note, index) in newPetForm.notes" :key="index">{{note}}</li>
+      </ul>
       </b-form-group>
       <b-form-group
         id="input-group-description"
@@ -103,17 +119,23 @@ export default {
   name: 'AddPetForm',
   data () {
     return {
-      animal: [],
       animalOptions: [
-        { text: 'Cat', value: '/cats' },
-        { text: 'Dog', value: '/dogs' }
+        { text: 'Cat', value: 'cat' },
+        { text: 'Dog', value: 'dog' }
       ],
+      noteOptions: [
+        { text: 'Yes', value: true },
+        { text: 'No', value: false }
+      ],
+      addSpecialNotes: false,
+      specialNote: '',
       newPetForm: {
         name: '',
         breed: '',
         age: Number(),
         description: '',
-        notes: ''
+        species: '',
+        notes: []
       },
       error: false,
       errorMsg: '',
@@ -122,17 +144,17 @@ export default {
     }
   },
   methods: {
+    addNote () {
+      this.newPetForm.notes.push(this.specialNote)
+      this.specialNote = ''
+    },
     async addNewPet () {
-      const payload = {
-        route: this.animal,
-        petForm: this.newPetForm
-      }
       try {
         if (this.error) {
           this.error = false
           this.errorMsg = ''
         }
-        await this.$store.dispatch('pets/addNewPet', payload)
+        await this.$store.dispatch('pets/addNewPet', this.newPetForm)
         this.submitted = true
         this.submittedMsg = `${this.newPetForm.name} has been added`
         this.clearPetForm()
@@ -142,12 +164,12 @@ export default {
       }
     },
     clearPetForm () {
-      this.animal = []
       this.newPetForm.name = ''
       this.newPetForm.breed = ''
       this.newPetForm.age = Number()
       this.newPetForm.description = ''
-      this.newPetForm.notes = ''
+      this.newPetForm.species = ''
+      this.newPetForm.notes = []
     }
   }
 }
@@ -156,5 +178,9 @@ export default {
 <style scoped>
 #add-pet-container {
   border: 2px solid black;
+}
+.special-notes {
+  display: flex;
+  justify-content: space-around;
 }
 </style>

@@ -40,7 +40,7 @@ export default {
     ContactForm
   },
   created () {
-    this.$store.dispatch('pets/getPets')
+    this.$store.dispatch('pets/getAllPets')
   },
   head () {
     return {

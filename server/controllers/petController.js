@@ -45,9 +45,9 @@ module.exports = {
   }, */
   async updateSinglePet (req, res) {
     try {
-      const pet = Pet.findByIdAndUpdate(req.params.id, req.body)
+      const pet = await Pet.findByIdAndUpdate(req.params.id, req.body)
+      await pet.save()
       res.status(202).json({
-        pet: pet,
         msg: `Updated ${req.body.name} information`
       })
     } catch (e) {

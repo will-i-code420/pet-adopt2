@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <SinglePetCard />
+          <SinglePetCard :pet="dog" />
         </b-col>
       </b-row>
     </b-container>
@@ -16,6 +16,12 @@ import SinglePetCard from '~/components/SinglePetCard'
 export default {
   components: {
     SinglePetCard
+  },
+  computed: {
+    dog () {
+      const dog = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
+      return dog[0]
+    }
   }
 }
 </script>

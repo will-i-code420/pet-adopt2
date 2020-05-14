@@ -25,6 +25,7 @@ export default {
     return {
       fields: [
         { key: 'name' },
+        { key: 'species', sortable: true },
         { key: 'dateAdded', label: 'List Date', sortable: true },
         { key: 'action' }
       ]

@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import AllPetCards from '~/components/AllPetCards'
 
 export default {
@@ -23,12 +22,9 @@ export default {
     AllPetCards
   },
   computed: {
-    ...mapState({
-      cats: state => state.pets.cats
-    })
-  },
-  data () {
-    return {}
+    cats () {
+      return this.$store.getters['pets/getAllSelectedSpecies']('cat')
+    }
   },
   head () {
     return {

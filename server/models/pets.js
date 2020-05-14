@@ -20,6 +20,7 @@ const PetSchema = new Schema({
   },
   species: {
     type: String,
+    enum: ['cat', 'dog'],
     required: true
   },
   dateAdded: {
