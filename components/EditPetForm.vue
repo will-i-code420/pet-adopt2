@@ -52,19 +52,20 @@
         placeholder="Animal Age"
       ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="input-group-notes"
-        label="Special Notes:"
-        label-for="notes"
-      >
-      <b-form-input
-        id="notes"
-        v-model="editPetForm.notes"
-        type="text"
-        required
-        placeholder="Any meds, conditions, etc..."
-      ></b-form-input>
-      </b-form-group>
+      <div class="special-notes-container">
+        <p>Special Notes:</p>
+        <ul class="special-notes">
+          <li class="my-3" v-for="(note, index) in editPetForm.notes" :key="index">
+            {{note}}
+            <b-button variant="primary" @click="editNote(index)">
+              Edit
+            </b-button>
+            <b-button variant="danger" @click="deleteNote(index)">
+              X
+            </b-button>
+          </li>
+        </ul>
+      </div>
       <b-form-group
         id="input-group-description"
         label="Pet Description:"
@@ -120,6 +121,8 @@ export default {
         species: this.pet.species,
         notes: this.pet.notes
       },
+      editingNote: false,
+      newNote: '',
       error: false,
       errorMsg: '',
       submitted: false,
@@ -144,6 +147,13 @@ export default {
         this.error = true
         this.errorMsg = e.response.data.msg
       }
+    },
+    deleteNote (index) {
+      const newNotes = this.editPetForm.notes.filter((note, idx, arr) => arr[idx] !== arr[index])
+      this.editPetForm.notes = newNotes
+    },
+    editNote (index) {
+      this.editingNote = !this.editingNote
     }
   }
 }
