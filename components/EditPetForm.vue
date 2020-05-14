@@ -55,15 +55,33 @@
       <div class="special-notes-container">
         <p>Special Notes:</p>
         <ul class="special-notes">
-          <li class="my-3" v-for="(note, index) in editPetForm.notes" :key="index">
+          <li v-show="!editingNote" class="my-3" v-for="(note, index) in editPetForm.notes" :key="index">
             {{note}}
-            <b-button variant="primary" @click="editNote(index)">
+            <b-button variant="primary" @click="editNote(index, note)">
               Edit
             </b-button>
             <b-button variant="danger" @click="deleteNote(index)">
               X
             </b-button>
           </li>
+          <b-row v-show="editingNote">
+            <b-col offset="3">
+              <b-form inline>
+                <b-form-input
+                  id="notes"
+                  class="mr-3"
+                  v-model="newNote"
+                  type="text"
+                ></b-form-input>
+                <b-button variant="primary" class="px-2 py-2 mr-2" @click="saveNoteEdit">
+                  Save
+                </b-button>
+                <b-button variant="danger" class="py-2" @click="cancelNoteEdit">
+                  X
+                </b-button>
+              </b-form>
+            </b-col>
+          </b-row>
         </ul>
       </div>
       <b-form-group
@@ -122,6 +140,7 @@ export default {
         notes: this.pet.notes
       },
       editingNote: false,
+      noteIndex: 0,
       newNote: '',
       error: false,
       errorMsg: '',
@@ -152,8 +171,19 @@ export default {
       const newNotes = this.editPetForm.notes.filter((note, idx, arr) => arr[idx] !== arr[index])
       this.editPetForm.notes = newNotes
     },
-    editNote (index) {
+    editNote (index, note) {
+      this.newNote = note
+      this.noteIndex = index
       this.editingNote = !this.editingNote
+    },
+    cancelNoteEdit () {
+      this.newNote = ''
+      this.noteIndex = 0
+      this.editingNote = false
+    },
+    saveNoteEdit () {
+      this.editPetForm.notes[this.noteIndex] = this.newNote
+      this.cancelNoteEdit()
     }
   }
 }
