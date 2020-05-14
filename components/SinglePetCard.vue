@@ -15,8 +15,8 @@
             <hr/>
             <h4>{{pet.description}}</h4>
             <hr/>
-            <p>
-              <strong>Special Notes</strong>
+            <p v-if="petNotes > 1">
+              <strong>*** Special Notes ***</strong>
             <ul class="special-notes">
               <li v-for="(note, index) in pet.notes" :key="index">{{note}}</li>
             </ul>
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import ContactForm from '~/components/ContactForm'
 
 export default {
@@ -42,17 +41,13 @@ export default {
   components: {
     ContactForm
   },
-  mounted () {
-    const payload = {
-      species: this.$route.name,
-      id: this.$route.params.id
-    }
-    this.$store.dispatch('pets/getSinglePet', payload)
+  props: {
+    pet: Object
   },
   computed: {
-    ...mapState({
-      pet: state => state.pets.currentPet
-    })
+    petNotes () {
+      return this.pet.notes.length
+    }
   },
   data () {
     return {
@@ -61,7 +56,7 @@ export default {
   },
   methods: {
     activatePetInquiry () {
-      this.sendAnimalInquiry = true
+      this.sendAnimalInquiry = !this.sendAnimalInquiry
     }
   }
 }
