@@ -39,5 +39,10 @@ export const getters = {
     return (id) => {
       return state.pets.filter(pet => pet._id === id)
     }
+  },
+  getAllSelectedSpecies (state) {
+    return (type) => {
+      return state.pets.filter(pet => pet.species === type)
+    }
   }
 }
