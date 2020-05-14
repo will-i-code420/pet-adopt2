@@ -98,7 +98,7 @@
         max-rows="6"
       ></b-form-textarea>
       </b-form-group>
-      <b-button variant="primary" class="my-3 px-5 py-2" @click="editPet">
+      <b-button variant="primary" class="my-3 px-5 py-2" @click="submitPetEdits">
         Submit Changes
       </b-button>
       <b-alert
@@ -149,10 +149,10 @@ export default {
     }
   },
   methods: {
-    async editPet () {
+    async submitPetEdits () {
       const payload = {
         id: this.pet._id,
-        petUpdate: this.editPetForm
+        petUpdateForm: this.editPetForm
       }
       try {
         if (this.error) {

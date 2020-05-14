@@ -17,8 +17,8 @@ export const actions = {
     await this.$axios.post('/pets', petForm)
     dispatch('getAllPets')
   },
-  async updatePet ({ dispatch }, { id, petUpdate }) {
-    await this.$axios.put(`/pets/${id}`, petUpdate)
+  async updatePet ({ dispatch }, { id, petUpdateForm }) {
+    await this.$axios.put(`/pets/${id}`, petUpdateForm)
     dispatch('getAllPets')
   }
 }
