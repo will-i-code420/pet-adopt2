@@ -54,6 +54,29 @@
       </b-form-group>
       <div class="special-notes-container">
         <p>Special Notes:</p>
+        <b-button variant="primary" class="my-3 px-5 py-2" @click="addNewNote">
+          New Note
+        </b-button>
+        <b-row v-show="addingNewNote">
+          <b-col offset="2">
+            <b-form inline>
+              <b-input-group prepend="New Note">
+                <b-form-input
+                  id="notes"
+                  class="mr-3"
+                  v-model="newNote"
+                  type="text"
+                  ></b-form-input>
+              </b-input-group>
+              <b-button variant="primary" class="px-2 py-2 mr-2" @click="saveNewNote">
+                Save
+              </b-button>
+              <b-button variant="danger" class="py-2" @click="cancelNewNote">
+                X
+              </b-button>
+            </b-form>
+          </b-col>
+        </b-row>
         <ul class="special-notes">
           <li v-show="!editingNote" class="my-3" v-for="(note, index) in editPetForm.notes" :key="index">
             {{note}}
@@ -139,6 +162,7 @@ export default {
         species: this.pet.species,
         notes: this.pet.notes
       },
+      addingNewNote: false,
       editingNote: false,
       noteIndex: 0,
       newNote: '',
@@ -171,6 +195,9 @@ export default {
       const newNotes = this.editPetForm.notes.filter((note, idx, arr) => arr[idx] !== arr[index])
       this.editPetForm.notes = newNotes
     },
+    addNewNote () {
+      this.addingNewNote = !this.addingNewNote
+    },
     editNote (index, note) {
       this.newNote = note
       this.noteIndex = index
@@ -184,6 +211,16 @@ export default {
     saveNoteEdit () {
       this.editPetForm.notes[this.noteIndex] = this.newNote
       this.cancelNoteEdit()
+    },
+    saveNewNote () {
+      const newNoteList = [...this.editPetForm.notes, this.newNote]
+      this.newNote = ''
+      this.editPetForm.notes = newNoteList
+      this.addingNewNote = !this.addingNewNote
+    },
+    cancelNewNote () {
+      this.addingNewNote = !this.addingNewNote
+      this.newNote = ''
     }
   }
 }
