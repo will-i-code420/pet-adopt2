@@ -16,7 +16,9 @@
     </slot>
     <slot name="form-group-8">
     </slot>
-    <slot name="submitBtn">
+    <slot name="submitBtn1">
+    </slot>
+    <slot name="submitBtn2">
     </slot>
     <slot name="errorMsg">
     </slot>
