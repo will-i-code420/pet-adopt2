@@ -1,9 +1,9 @@
 <template>
-  <section id="single-dog-container">
+  <section id="single-pet-container">
     <b-container>
       <b-row>
         <b-col>
-          <SinglePetCard :pet="dog" />
+          <SinglePetCard :pet="pet" />
         </b-col>
       </b-row>
     </b-container>
@@ -18,9 +18,9 @@ export default {
     SinglePetCard
   },
   computed: {
-    dog () {
-      const dog = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
-      return dog[0]
+    pet () {
+      const pet = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
+      return pet[0]
     }
   }
 }
