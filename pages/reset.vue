@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ResetForm from '~/components/ResetForm'
+import ResetForm from '~/components/forms/ResetForm'
 
 export default {
   components: {
