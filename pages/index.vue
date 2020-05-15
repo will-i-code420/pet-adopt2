@@ -53,12 +53,12 @@ export default {
   },
   head () {
     return {
-      title: 'Pet Adopt',
+      title: 'Adopt-A-Pet Home Page',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'No kill animal shelter seeking forever homes for cats and dogs'
+          content: 'No kill animal shelter seeking forever homes for cats, dogs, and many other of man kinds best friends.  We are always looking for foster homes, donations, and volunteers'
         }
       ]
     }
