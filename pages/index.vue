@@ -1,42 +1,51 @@
 <template>
-  <section id="home-container">
-    <b-container class="pt-3">
-      <h1 class="text-center pb-1">
-        Adopt-A-Pet
-      </h1>
-      <b-row>
-        <b-col>
-          <b-img class="hero-img" src="~/static/hero-img.jpg" fluid alt="two boston terriers laying on couch" />
-        </b-col>
-      </b-row>
-      <h2 class="text-center py-5">
+  <main id="home-container">
+    <Hero />
+    <b-container>
+      <h2 class="text-center mb-4">
         Find your new family friend today
       </h2>
-      <b-row class="featured-pets mb-3">
-        <b-col md="4">
+      <b-row class="featured-pets" align-h="around" align-v="center">
+        <b-col md="3">
           <h2>Featured Pets Placeholder</h2>
         </b-col>
-        <b-col md="4">
+        <b-col md="3">
           <h2>Featured Pets Placeholder</h2>
         </b-col>
-        <b-col md="4">
+        <b-col md="3">
           <h2>Featured Pets Placeholder</h2>
         </b-col>
       </b-row>
-      <b-form-row align-h="start" class="pb-3">
+      <h2 class="text-center my-3">
+        About Us
+      </h2>
+      <b-row>
+        <b-col md="6">
+          <p>A little about us placeholder.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </b-col>
+        <b-col md="6">
+          <p>A little about us placeholder.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </b-col>
+        <nuxt-link to="/about" class="learn-more-btn mt-3">
+          Learn More
+        </nuxt-link>
+      </b-row>
+      <b-form-row align-h="start" class="pb-3 my-5">
         <b-col cols="8" offset="2" class="contact-form py-3 px-5">
           <ContactForm :animalInquiry="false"/>
         </b-col>
       </b-form-row>
     </b-container>
-  </section>
+  </main>
 </template>
 
 <script>
+import Hero from '~/components/Hero'
 import ContactForm from '~/components/ContactForm'
 
 export default {
   components: {
+    Hero,
     ContactForm
   },
   created () {
@@ -58,12 +67,6 @@ export default {
 </script>
 
 <style>
-.hero-img {
-  height: 90vh;
-  width: 100%;
-  object-fit: cover;
-}
-
 .form-button {
   display: flex;
   margin: 0 auto;
@@ -72,5 +75,9 @@ export default {
 .contact-form {
   border: 2px solid black;
   border-radius: 10px;
+}
+
+.learn-more-btn {
+  margin: 0 auto;
 }
 </style>
