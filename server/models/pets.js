@@ -23,6 +23,11 @@ const PetSchema = new Schema({
     enum: ['cat', 'dog'],
     required: true
   },
+  gender: {
+    type: String,
+    enum: ['male', 'female'],
+    required: true
+  },
   dateAdded: {
     type: Date,
     default: Date.now

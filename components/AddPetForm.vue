@@ -39,6 +39,15 @@
         placeholder="Animal Breed"
       ></b-form-input>
       </b-form-group>
+      <b-form-group label="Animal Gender">
+        <b-form-radio-group
+          id="gender"
+          v-model="newPetForm.gender"
+          :options="genderOptions"
+          name="gender-options"
+          required
+        ></b-form-radio-group>
+      </b-form-group>
       <b-form-group
         id="input-group-age"
         label="Pet Age:"
@@ -123,6 +132,10 @@ export default {
         { text: 'Cat', value: 'cat' },
         { text: 'Dog', value: 'dog' }
       ],
+      genderOptions: [
+        { text: 'Male', value: 'male' },
+        { text: 'Female', value: 'female' }
+      ],
       noteOptions: [
         { text: 'Yes', value: true },
         { text: 'No', value: false }
@@ -132,6 +145,7 @@ export default {
       newPetForm: {
         name: '',
         breed: '',
+        gender: '',
         age: Number(),
         description: '',
         species: '',
