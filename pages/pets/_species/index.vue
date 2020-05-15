@@ -41,7 +41,7 @@ export default {
   },
   head () {
     return {
-      title: `All ${this.$route.params.species} For Adoption`,
+      title: `All ${this.title} For Adoption`,
       meta: [
         {
           hid: 'description',
