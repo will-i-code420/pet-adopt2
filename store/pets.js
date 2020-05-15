@@ -42,7 +42,11 @@ export const getters = {
   },
   getAllSelectedSpecies (state) {
     return (type) => {
-      return state.pets.filter(pet => pet.species === type)
+      if (type === 'all') {
+        return state.pets
+      } else {
+        return state.pets.filter(pet => pet.species === type)
+      }
     }
   }
 }
