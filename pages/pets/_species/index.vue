@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
           <h1 class="text-center py-3">
-            All {{ $route.params.species }} Looking For A New Home
+            All {{ title }} Looking For A New Home
           </h1>
         </b-col>
       </b-row>
@@ -30,6 +30,13 @@ export default {
     pets () {
       const species = this.$route.params.species.substring(0, 3)
       return this.$store.getters['pets/getAllSelectedSpecies'](species)
+    },
+    title () {
+      if (this.$route.params.species === 'all') {
+        return 'Pets'
+      } else {
+        return this.$route.params.species.replace(/^./, this.$route.params.species[0].toUpperCase())
+      }
     }
   },
   head () {
