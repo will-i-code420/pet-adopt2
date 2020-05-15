@@ -14,7 +14,7 @@
         <p>Age: {{ pet.age }}</p>
         <p>{{ pet.description.substring(0, 75) + '...' }}</p>
       </b-card-text>
-      <nuxt-link :to="route + pet._id">
+      <nuxt-link :to="$route.params.species + '/' + pet._id">
         View Details
       </nuxt-link>
     </b-card>
@@ -25,7 +25,6 @@
 export default {
   name: 'AllPetCards',
   props: {
-    route: String,
     pet: Object
   }
 }
