@@ -12,9 +12,13 @@ export const mutations = {
 }
 
 export const actions = {
-  async login ({ commit }, userInfo) {
-    const user = await this.$axios.post('/login', userInfo)
-    commit('SET_USER', user.data.user)
+  async login ({ commit, dispatch }, userInfo) {
+    let user = await this.$axios.post('/login', userInfo)
+    user = user.data.user
+    if (user.role === 'employee' || user.role === 'admin') {
+      dispatch('contacts/getAllContacts', null, { root: true })
+    }
+    commit('SET_USER', user)
   },
   async register ({ commit }, userInfo) {
     const newUser = await this.$axios.post('/register', userInfo)

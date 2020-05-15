@@ -72,9 +72,6 @@ export default {
     AllContactsTable,
     AllPetsTable
   },
-  mounted () {
-    this.$store.dispatch('contacts/getAllContacts')
-  },
   data () {
     return {
       addingPet: false,
