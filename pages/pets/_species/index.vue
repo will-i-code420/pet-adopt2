@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import AllPetCards from '~/components/AllPetCards'
+import AllPetCards from '~/components/cards/AllPetCards'
 
 export default {
   components: {

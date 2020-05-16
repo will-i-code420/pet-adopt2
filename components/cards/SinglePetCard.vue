@@ -1,5 +1,5 @@
 <template>
-  <section id="single-pet-container">
+  <article :class="pet._id">
     <h1 class="my-3 text-center">Say Hello To {{pet.name}}</h1>
     <b-card no-body class="overflow-hidden mb-4 text-center">
     <b-row no-gutters align-v="center">
@@ -30,11 +30,11 @@
     </b-row>
     </b-card>
     <ContactForm v-if="sendAnimalInquiry" :animalInquiry="true" :pet="pet"/>
-  </section>
+  </article>
 </template>
 
 <script>
-import ContactForm from '~/components/ContactForm'
+import ContactForm from '~/components/forms/ContactForm'
 
 export default {
   name: 'SinglePetCard',

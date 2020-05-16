@@ -1,9 +1,11 @@
 <template>
-  <section id="edit-pet-container" class="my-5 text-center">
-    <h3 class="my-3">
-      Edit {{ pet.name }}
-    </h3>
-    <b-form class="mx-5">
+  <Form>
+    <template #title>
+      <h3>
+        Editing {{ pet.name }}
+      </h3>
+    </template>
+    <template #form-group-1>
       <b-form-group label="Animal Species">
         <b-form-radio-group
           id="species"
@@ -13,6 +15,8 @@
           required
         ></b-form-radio-group>
       </b-form-group>
+    </template>
+    <template #form-group-2>
       <b-form-group
         id="input-group-name"
         label="Pet Name:"
@@ -26,10 +30,12 @@
         placeholder="Animal Name"
       ></b-form-input>
       </b-form-group>
+    </template>
+    <template #form-group-3>
       <b-form-group
         id="input-group-breed"
         label="Pet Breed:"
-        label-for="name"
+        label-for="breed"
       >
       <b-form-input
         id="breed"
@@ -39,6 +45,8 @@
         placeholder="Animal Breed"
       ></b-form-input>
       </b-form-group>
+    </template>
+    <template #form-group-4>
       <b-form-group label="Animal Gender">
         <b-form-radio-group
           id="gender"
@@ -48,6 +56,8 @@
           required
         ></b-form-radio-group>
       </b-form-group>
+    </template>
+    <template #form-group-5>
       <b-form-group
         id="input-group-age"
         label="Pet Age:"
@@ -61,6 +71,8 @@
         placeholder="Animal Age"
       ></b-form-input>
       </b-form-group>
+    </template>
+    <template #form-group-6>
       <div class="special-notes-container">
         <p>Special Notes:</p>
         <b-button variant="primary" class="my-3 px-5 py-2" @click="addNewNote">
@@ -116,6 +128,8 @@
           </b-row>
         </ul>
       </div>
+    </template>
+    <template #form-group-7>
       <b-form-group
         id="input-group-description"
         label="Pet Description:"
@@ -130,15 +144,21 @@
         max-rows="6"
       ></b-form-textarea>
       </b-form-group>
+    </template>
+    <template #btn1>
       <b-button variant="primary" class="my-3 px-5 py-2" @click="submitPetEdits">
         Submit Changes
       </b-button>
+    </template>
+    <template #errorMsg>
       <b-alert
         :show="error"
         variant="danger"
       >
         {{ errorMsg }}
       </b-alert>
+    </template>
+    <template #successMsg>
       <b-alert
         :show="submitted"
         dismissible
@@ -147,8 +167,8 @@
       >
         {{ submittedMsg }}
       </b-alert>
-    </b-form>
-  </section>
+    </template>
+  </Form>
 </template>
 
 <script>
@@ -241,7 +261,5 @@ export default {
 </script>
 
 <style scoped>
-#edit-pet-container {
-  border: 2px solid black;
-}
+
 </style>

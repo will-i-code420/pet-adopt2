@@ -62,7 +62,7 @@
 <script>
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
-import AddPetForm from '~/components/AddPetForm'
+import AddPetForm from '~/components/forms/AddPetForm'
 import AllContactsTable from '~/components/AllContactsTable'
 import AllPetsTable from '~/components/AllPetsTable'
 

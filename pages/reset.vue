@@ -1,9 +1,11 @@
 <template>
   <section id="user-reset">
     <b-container>
-      <b-row>
+      <b-row class="my-3">
         <b-col>
-          <h1>Forgot Username/Password Reset</h1>
+          <h1 class="text-center">
+            Forgot Username/Password Reset
+          </h1>
         </b-col>
       </b-row>
       <b-form-row>
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import ResetForm from '~/components/ResetForm'
+import ResetForm from '~/components/forms/ResetForm'
 
 export default {
   components: {

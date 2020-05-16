@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ContactResponseCard from '~/components/ContactResponseCard'
+import ContactResponseCard from '~/components/cards/ContactResponseCard'
 
 export default {
   components: {

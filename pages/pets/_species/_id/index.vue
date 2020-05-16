@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import SinglePetCard from '~/components/SinglePetCard'
+import SinglePetCard from '~/components/cards/SinglePetCard'
 
 export default {
   components: {

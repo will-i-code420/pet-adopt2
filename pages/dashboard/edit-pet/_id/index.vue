@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import EditPetForm from '~/components/EditPetForm'
+import EditPetForm from '~/components/forms/EditPetForm'
 
 export default {
   components: {

@@ -12,7 +12,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import ProfileCard from '~/components/ProfileCard'
+import ProfileCard from '~/components/cards/ProfileCard'
 
 export default {
   components: {
