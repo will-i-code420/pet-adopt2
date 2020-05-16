@@ -16,7 +16,7 @@
           <h2>Featured Pets Placeholder</h2>
         </b-col>
       </b-row>
-      <h2 class="text-center my-3">
+      <h2 class="text-center mt-5 mb-3">
         About Us
       </h2>
       <b-row>
