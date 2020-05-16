@@ -24,7 +24,8 @@
         v-model="responseForm.info"
         placeholder="Enter response..."
         required
-        rows="3"          max-rows="6"
+        rows="3"
+        max-rows="6"
       ></b-form-textarea>
       </b-form-group>
       <b-button variant="primary" @click="sendResponse">
