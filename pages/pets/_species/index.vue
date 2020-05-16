@@ -10,7 +10,7 @@
       </b-row>
       <b-row>
         <AllPetCards
-          v-for="pet in pets"
+          v-for="pet in currentPets"
           :key="pet._id"
           :pet="pet"
         />
@@ -44,13 +44,16 @@ export default {
   data () {
     return {
       currentPage: 1,
-      perPage: 3
+      perPage: 3,
+      currentPets: []
     }
   },
   computed: {
     pets () {
       const species = this.$route.params.species.substring(0, 3)
-      return this.$store.getters['pets/getAllSelectedSpecies'](species)
+      const allPets = this.$store.getters['pets/getAllSelectedSpecies'](species)
+      this.setCurrentPets(allPets)
+      return allPets
     },
     rows () {
       return this.pets.length
@@ -64,8 +67,12 @@ export default {
     }
   },
   methods: {
+    setCurrentPets (pets) {
+      this.currentPets = pets.slice(0, this.perPage)
+    },
     changePage (currentPage) {
-      alert(currentPage)
+      const start = (currentPage - 1) * this.perPage
+      this.currentPets = this.pets.slice(start, start + this.perPage)
     }
   },
   head () {
