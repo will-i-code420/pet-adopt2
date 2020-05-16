@@ -2,7 +2,7 @@
   <section id="add-pet-container">
     <Form>
       <template #title>
-        <h3>
+        <h3 class="mt-3">
           Add New Pet
         </h3>
       </template>
@@ -215,7 +215,8 @@ export default {
 
 <style scoped>
 #add-pet-container {
-  border: 2px solid black;
+  border: 3px solid black;
+  border-radius: 25px;
 }
 .special-notes {
   display: flex;

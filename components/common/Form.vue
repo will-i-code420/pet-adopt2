@@ -2,7 +2,7 @@
   <div class="form-container">
     <slot name="title">
     </slot>
-    <b-form>
+    <b-form class="px-5 pb-4">
       <slot name="form-group-1">
       </slot>
       <slot name="form-group-2">
