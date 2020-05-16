@@ -3,7 +3,9 @@
     <b-container>
       <b-row>
         <b-col>
-          <h1 class="text-center">Create User Account</h1>
+          <h1 class="text-center">
+            Create New User Account
+          </h1>
         </b-col>
       </b-row>
       <b-form-row class="mb-5">

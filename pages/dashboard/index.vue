@@ -29,13 +29,13 @@
           <h3 class="mb-3">
             Select An Action
           </h3>
-          <b-button variant="primary" @click="respondContact" class="mr-2">
+          <b-button variant="primary" class="mr-2" @click="respondContact">
             Respond To Contacts
           </b-button>
-          <b-button variant="primary" @click="viewPets" class="ml-2">
+          <b-button variant="primary" class="ml-2" @click="viewPets">
             View Unadopted Pets
           </b-button>
-          <b-button variant="primary" @click="addPet" class="ml-2">
+          <b-button variant="primary" class="ml-2" @click="addPet">
             Add New Pet
           </b-button>
         </b-col>
@@ -60,8 +60,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import AddPetForm from '~/components/forms/AddPetForm'
 import AllContactsTable from '~/components/AllContactsTable'
 import AllPetsTable from '~/components/AllPetsTable'
