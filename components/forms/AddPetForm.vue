@@ -5,6 +5,7 @@
         <h3 class="mt-3">
           Add New Pet
         </h3>
+        <hr>
       </template>
       <template #form-group-1>
         <b-form-group label="Animal Species">
@@ -77,7 +78,7 @@
         <b-form-group label="Special Notes">
           <b-form-radio-group
             id="special-notes"
-            v-model="addSpecialNotes"
+            v-model="addingSpecialNotes"
             :options="noteOptions"
             name="special-notes"
           ></b-form-radio-group>
@@ -88,7 +89,7 @@
           id="input-group-notes"
           label="Special Notes:"
           label-for="notes"
-          v-if="addSpecialNotes"
+          v-if="addingSpecialNotes"
         >
         <b-form-input
           id="notes"
@@ -164,7 +165,7 @@ export default {
         { text: 'Yes', value: true },
         { text: 'No', value: false }
       ],
-      addSpecialNotes: false,
+      addingSpecialNotes: false,
       specialNote: '',
       newPetForm: {
         name: '',
@@ -204,10 +205,12 @@ export default {
     clearPetForm () {
       this.newPetForm.name = ''
       this.newPetForm.breed = ''
+      this.newPetForm.gender = ''
       this.newPetForm.age = Number()
       this.newPetForm.description = ''
       this.newPetForm.species = ''
       this.newPetForm.notes = []
+      this.addingSpecialNotes = false
     }
   }
 }
