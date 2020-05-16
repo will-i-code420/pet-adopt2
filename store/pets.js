@@ -43,9 +43,9 @@ export const getters = {
   getAllSelectedSpecies (state) {
     return (type) => {
       if (type === 'all') {
-        return state.pets
+        return state.pets.filter(pet => pet.adopted === false)
       } else {
-        return state.pets.filter(pet => pet.species === type)
+        return state.pets.filter(pet => pet.species === type && pet.adopted === false)
       }
     }
   }
