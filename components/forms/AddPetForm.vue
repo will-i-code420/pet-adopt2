@@ -19,6 +19,17 @@
         </b-form-group>
       </template>
       <template #form-group-2>
+        <b-form-group label="Animal Gender">
+          <b-form-radio-group
+            id="gender"
+            v-model="newPetForm.gender"
+            :options="genderOptions"
+            name="gender-options"
+            required
+          ></b-form-radio-group>
+        </b-form-group>
+      </template>
+      <template #form-group-3>
         <b-form-group
           id="input-group-name"
           label="Pet Name:"
@@ -33,7 +44,7 @@
         ></b-form-input>
         </b-form-group>
       </template>
-      <template #form-group-3>
+      <template #form-group-4>
         <b-form-group
           id="input-group-breed"
           label="Pet Breed:"
@@ -46,17 +57,6 @@
           required
           placeholder="Animal Breed"
         ></b-form-input>
-        </b-form-group>
-      </template>
-      <template #form-group-4>
-        <b-form-group label="Animal Gender">
-          <b-form-radio-group
-            id="gender"
-            v-model="newPetForm.gender"
-            :options="genderOptions"
-            name="gender-options"
-            required
-          ></b-form-radio-group>
         </b-form-group>
       </template>
       <template #form-group-5>
@@ -75,6 +75,21 @@
         </b-form-group>
       </template>
       <template #form-group-6>
+        <b-form-group
+          id="input-group-weight"
+          label="Pet Age:"
+          label-for="weight"
+        >
+        <b-form-input
+          id="weight"
+          v-model.number="newPetForm.weight"
+          type="number"
+          required
+          placeholder="Animal Weight in LBS"
+        ></b-form-input>
+        </b-form-group>
+      </template>
+      <template #form-group-7>
         <b-form-group label="Special Notes">
           <b-form-radio-group
             id="special-notes"
@@ -84,7 +99,7 @@
           ></b-form-radio-group>
         </b-form-group>
       </template>
-      <template #form-group-7>
+      <template #form-group-8>
         <b-form-group
           id="input-group-notes"
           label="Special Notes:"
@@ -105,7 +120,7 @@
         </ul>
         </b-form-group>
       </template>
-      <template #form-group-8>
+      <template #form-group-9>
         <b-form-group
           id="input-group-description"
           label="Pet Description:"
@@ -172,6 +187,7 @@ export default {
         breed: '',
         gender: '',
         age: Number(),
+        weight: Number(),
         description: '',
         species: '',
         notes: []
@@ -207,6 +223,7 @@ export default {
       this.newPetForm.breed = ''
       this.newPetForm.gender = ''
       this.newPetForm.age = Number()
+      this.newPetForm.weight = Number()
       this.newPetForm.description = ''
       this.newPetForm.species = ''
       this.newPetForm.notes = []

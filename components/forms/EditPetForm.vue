@@ -17,6 +17,17 @@
       </b-form-group>
     </template>
     <template #form-group-2>
+      <b-form-group label="Animal Gender">
+        <b-form-radio-group
+          id="gender"
+          v-model="editPetForm.gender"
+          :options="genderOptions"
+          name="gender-options"
+          required
+        ></b-form-radio-group>
+      </b-form-group>
+    </template>
+    <template #form-group-3>
       <b-form-group
         id="input-group-name"
         label="Pet Name:"
@@ -31,7 +42,7 @@
       ></b-form-input>
       </b-form-group>
     </template>
-    <template #form-group-3>
+    <template #form-group-4>
       <b-form-group
         id="input-group-breed"
         label="Pet Breed:"
@@ -44,17 +55,6 @@
         required
         placeholder="Animal Breed"
       ></b-form-input>
-      </b-form-group>
-    </template>
-    <template #form-group-4>
-      <b-form-group label="Animal Gender">
-        <b-form-radio-group
-          id="gender"
-          v-model="editPetForm.gender"
-          :options="genderOptions"
-          name="gender-options"
-          required
-        ></b-form-radio-group>
       </b-form-group>
     </template>
     <template #form-group-5>
@@ -73,6 +73,21 @@
       </b-form-group>
     </template>
     <template #form-group-6>
+      <b-form-group
+        id="input-group-age"
+        label="Pet Weight:"
+        label-for="weight"
+      >
+      <b-form-input
+        id="weight"
+        v-model.number="editPetForm.weight"
+        type="number"
+        required
+        placeholder="Animal Age"
+      ></b-form-input>
+      </b-form-group>
+    </template>
+    <template #form-group-7>
       <div class="special-notes-container">
         <p>Special Notes:</p>
         <b-button variant="primary" class="my-3 px-5 py-2" @click="addNewNote">
@@ -129,7 +144,7 @@
         </ul>
       </div>
     </template>
-    <template #form-group-7>
+    <template #form-group-8>
       <b-form-group
         id="input-group-description"
         label="Pet Description:"
@@ -192,6 +207,7 @@ export default {
         breed: this.pet.breed,
         gender: this.pet.gender,
         age: this.pet.age,
+        weight: this.pet.weight,
         description: this.pet.description,
         species: this.pet.species,
         notes: this.pet.notes
