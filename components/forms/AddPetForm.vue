@@ -36,7 +36,7 @@
         <b-form-group
           id="input-group-breed"
           label="Pet Breed:"
-          label-for="name"
+          label-for="breed"
         >
         <b-form-input
           id="breed"
