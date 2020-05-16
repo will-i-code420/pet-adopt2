@@ -1,5 +1,5 @@
 <template>
-  <section :id="$route.params.species-container">
+  <section :id="$route.params.species + 'container'">
     <b-container>
       <b-row>
         <b-col>
@@ -9,9 +9,16 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col v-for="pet in pets" :key="pet._id" md="4">
-          <AllPetCards
-            :pet="pet"
+        <AllPetCards
+          v-for="pet in pets"
+          :key="pet._id"
+          :pet="pet"
+        />
+      </b-row>
+      <b-row>
+        <b-col cols="4" offset="4">
+          <Pagination
+            :rows="rows"
           />
         </b-col>
       </b-row>
@@ -21,15 +28,20 @@
 
 <script>
 import AllPetCards from '~/components/cards/AllPetCards'
+import Pagination from '~/components/Pagination'
 
 export default {
   components: {
-    AllPetCards
+    AllPetCards,
+    Pagination
   },
   computed: {
     pets () {
       const species = this.$route.params.species.substring(0, 3)
       return this.$store.getters['pets/getAllSelectedSpecies'](species)
+    },
+    rows () {
+      return this.pets.length
     },
     title () {
       if (this.$route.params.species === 'all') {
