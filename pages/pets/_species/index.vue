@@ -17,9 +17,17 @@
       </b-row>
       <b-row>
         <b-col cols="4" offset="4">
-          <Pagination
-            :rows="rows"
-          />
+          <b-pagination
+            v-model="currentPage"
+            :total-rows="rows"
+            :per-page="perPage"
+            first-text="⏮"
+            prev-text="⏪"
+            next-text="⏩"
+            last-text="⏭"
+            @input="changePage(currentPage)"
+          >
+          </b-pagination>
         </b-col>
       </b-row>
     </b-container>
@@ -28,12 +36,16 @@
 
 <script>
 import AllPetCards from '~/components/cards/AllPetCards'
-import Pagination from '~/components/Pagination'
 
 export default {
   components: {
-    AllPetCards,
-    Pagination
+    AllPetCards
+  },
+  data () {
+    return {
+      currentPage: 1,
+      perPage: 3
+    }
   },
   computed: {
     pets () {
@@ -49,6 +61,11 @@ export default {
       } else {
         return this.$route.params.species.replace(/^./, this.$route.params.species[0].toUpperCase())
       }
+    }
+  },
+  methods: {
+    changePage (currentPage) {
+      alert(currentPage)
     }
   },
   head () {
