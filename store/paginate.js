@@ -1,4 +1,5 @@
 export const state = () => ({
+  currentPage: 1,
   rows: 0,
   perPage: 6
 })
@@ -9,6 +10,9 @@ export const mutations = {
   },
   SET_PER_PAGE (state, perPage) {
     state.perPage = perPage
+  },
+  SET_CURRENT_PAGE (state, page) {
+    state.currentPage = page
   }
 }
 
@@ -18,6 +22,9 @@ export const actions = {
   },
   setPerPage ({ commit }, perPage) {
     commit('SET_PER_PAGE', perPage)
+  },
+  setCurrentPage ({ commit }, page) {
+    commit('SET_CURRENT_PAGE', page)
   },
   changePage ({ dispatch, state }, selectedPage) {
     const start = (selectedPage - 1) * state.perPage

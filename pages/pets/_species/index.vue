@@ -58,11 +58,14 @@ export default {
       } else {
         return this.$route.params.species.replace(/^./, this.$route.params.species[0].toUpperCase())
       }
-    }
-  },
-  data () {
-    return {
-      currentPage: 1
+    },
+    currentPage: {
+      get () {
+        return this.$store.state.paginate.currentPage
+      },
+      set (page) {
+        this.$store.dispatch('paginate/setCurrentPage', page)
+      }
     }
   },
   methods: {
