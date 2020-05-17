@@ -1,25 +1,43 @@
 export const state = () => ({
-  pets: []
+  pets: [],
+  currentPets: [],
+  rows: 0
 })
 
 export const mutations = {
   SET_ALL_PETS (state, pets) {
     state.pets = pets
+  },
+  SET_ROWS (state, rows) {
+    state.rows = rows
+  },
+  SET_CURRENT_PETS (state, currentPets) {
+    state.currentPets = currentPets
   }
 }
 
 export const actions = {
   async getAllPets ({ commit }) {
     const pets = await this.$axios.get('/pets')
-    commit('SET_ALL_PETS', pets.data.pets)
+    await commit('SET_ALL_PETS', pets.data.pets)
   },
   async addNewPet ({ dispatch }, petForm) {
     await this.$axios.post('/pets', petForm)
-    dispatch('getAllPets')
+    await dispatch('getAllPets')
   },
   async updatePet ({ dispatch }, { id, petUpdateForm }) {
     await this.$axios.put(`/pets/${id}`, petUpdateForm)
-    dispatch('getAllPets')
+    await dispatch('getAllPets')
+  },
+  async setCurrentPets ({ commit, state }, species) {
+    let pets
+    if (species === 'all') {
+      pets = await state.pets.filter(pet => pet.adopted === false)
+    } else {
+      pets = await state.pets.filter(pet => pet.species === species && pet.adopted === false)
+    }
+    await commit('SET_ROWS', pets.length)
+    await commit('SET_CURRENT_PETS', pets)
   }
 }
 
@@ -40,13 +58,10 @@ export const getters = {
       return state.pets.filter(pet => pet._id === id)
     }
   },
-  getAllSelectedSpecies (state) {
-    return (type) => {
-      if (type === 'all') {
-        return state.pets.filter(pet => pet.adopted === false)
-      } else {
-        return state.pets.filter(pet => pet.species === type && pet.adopted === false)
-      }
-    }
+  getCurrentSelectedPets (state) {
+    return state.currentPets
+  },
+  getRows (state) {
+    return state.rows
   }
 }

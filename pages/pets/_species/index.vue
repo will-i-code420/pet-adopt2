@@ -10,7 +10,7 @@
       </b-row>
       <b-row>
         <AllPetCards
-          v-for="pet in currentPets"
+          v-for="pet in pets"
           :key="pet._id"
           :pet="pet"
         />
@@ -35,29 +35,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
 
 export default {
   components: {
     AllPetCards
   },
+  mounted () {
+    const species = this.$route.params.species.substring(0, 3)
+    this.$store.dispatch('pets/setCurrentPets', species)
+  },
   data () {
     return {
       currentPage: 1,
-      perPage: 3,
-      currentPets: []
+      perPage: 3
     }
   },
   computed: {
-    pets () {
-      const species = this.$route.params.species.substring(0, 3)
-      const allPets = this.$store.getters['pets/getAllSelectedSpecies'](species)
-      this.setCurrentPets(allPets)
-      return allPets
-    },
-    rows () {
-      return this.pets.length
-    },
+    ...mapGetters({
+      pets: 'pets/getCurrentSelectedPets',
+      rows: 'pets/getRows'
+    }),
     title () {
       if (this.$route.params.species === 'all') {
         return 'Pets'
@@ -67,9 +66,6 @@ export default {
     }
   },
   methods: {
-    setCurrentPets (pets) {
-      this.currentPets = pets.slice(0, this.perPage)
-    },
     changePage (currentPage) {
       const start = (currentPage - 1) * this.perPage
       this.currentPets = this.pets.slice(start, start + this.perPage)
