@@ -50,6 +50,11 @@ export default {
         this.$store.dispatch('search/setSeachQuery', query)
       }
     }
+  },
+  methods: {
+    searchAnimals () {
+      this.$store.dispatch('search/submitSearch')
+    }
   }
 }
 </script>

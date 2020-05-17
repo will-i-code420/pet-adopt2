@@ -28,6 +28,27 @@ module.exports = {
       })
     }
   },
+  async getSearchedPets (req, res) {
+    const searchType = req.body.type
+    const query = req.params.query
+    try {
+      const pets = await Pet.find({ searchType: /query/i })
+      if (!pets) {
+        res.status().json({
+          pets: `No Results Matching ${query}`
+        })
+      } else {
+        res.status().json({
+          pets: pets
+        })
+      }
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: 'An error occured please try again'
+      })
+    }
+  },
   /* no need for this method, may delete along with route
 
   async getSinglePet (req, res) {
