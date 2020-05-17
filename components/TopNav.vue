@@ -38,15 +38,18 @@ export default {
     TopNavLogin,
     TopNavLoggedIn
   },
-  data () {
-    return {
-      searchQuery: ''
-    }
-  },
   computed: {
     ...mapState({
       user: state => state.user.user
-    })
+    }),
+    searchQuery: {
+      get () {
+        return this.$store.state.search.searchQuery
+      },
+      set (query) {
+        this.$store.dispatch('search/setSeachQuery', query)
+      }
+    }
   }
 }
 </script>

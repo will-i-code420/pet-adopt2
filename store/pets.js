@@ -46,6 +46,10 @@ export const actions = {
   async updateCurrentPets ({ commit, state }, { start, perPage }) {
     const pets = await state.currentPets.slice(start, start + perPage)
     commit('SET_DISPLAY_PETS', pets)
+  },
+  async setSearchPets ({ commit, dispatch }, pets) {
+    await commit('SET_ALL_PETS', pets)
+    dispatch('setCurrentPets', 'all')
   }
 }
 
