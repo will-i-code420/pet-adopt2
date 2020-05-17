@@ -1,7 +1,9 @@
 export const state = () => ({
   pets: [],
   currentPets: [],
-  rows: 0
+  displayPets: [],
+  rows: 0,
+  perPage: 6
 })
 
 export const mutations = {
@@ -13,6 +15,9 @@ export const mutations = {
   },
   SET_CURRENT_PETS (state, currentPets) {
     state.currentPets = currentPets
+  },
+  SET_DISPLAY_PETS (state, displayPets) {
+    state.displayPets = displayPets
   }
 }
 
@@ -29,7 +34,7 @@ export const actions = {
     await this.$axios.put(`/pets/${id}`, petUpdateForm)
     await dispatch('getAllPets')
   },
-  async setCurrentPets ({ commit, state }, species) {
+  async setCurrentPets ({ dispatch, commit, state }, species) {
     let pets
     if (species === 'all') {
       pets = await state.pets.filter(pet => pet.adopted === false)
@@ -38,6 +43,12 @@ export const actions = {
     }
     await commit('SET_ROWS', pets.length)
     await commit('SET_CURRENT_PETS', pets)
+    dispatch('changePage', 1)
+  },
+  async changePage ({ commit, state }, selectedPage) {
+    const start = (selectedPage - 1) * state.perPage
+    const pets = await state.currentPets.slice(start, start + state.perPage)
+    await commit('SET_DISPLAY_PETS', pets)
   }
 }
 
@@ -58,10 +69,13 @@ export const getters = {
       return state.pets.filter(pet => pet._id === id)
     }
   },
-  getCurrentSelectedPets (state) {
-    return state.currentPets
+  getDisplayPets (state) {
+    return state.displayPets
   },
   getRows (state) {
     return state.rows
+  },
+  getPerPage (state) {
+    return state.perPage
   }
 }

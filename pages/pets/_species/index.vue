@@ -46,16 +46,11 @@ export default {
     const species = this.$route.params.species.substring(0, 3)
     this.$store.dispatch('pets/setCurrentPets', species)
   },
-  data () {
-    return {
-      currentPage: 1,
-      perPage: 3
-    }
-  },
   computed: {
     ...mapGetters({
-      pets: 'pets/getCurrentSelectedPets',
-      rows: 'pets/getRows'
+      pets: 'pets/getDisplayPets',
+      rows: 'pets/getRows',
+      perPage: 'pets/getPerPage'
     }),
     title () {
       if (this.$route.params.species === 'all') {
@@ -65,10 +60,14 @@ export default {
       }
     }
   },
+  data () {
+    return {
+      currentPage: 1
+    }
+  },
   methods: {
-    changePage (currentPage) {
-      const start = (currentPage - 1) * this.perPage
-      this.currentPets = this.pets.slice(start, start + this.perPage)
+    async changePage (selectedPage) {
+      await this.$store.dispatch('pets/changePage', selectedPage)
     }
   },
   head () {
