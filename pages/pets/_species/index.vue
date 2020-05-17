@@ -49,8 +49,8 @@ export default {
   computed: {
     ...mapGetters({
       pets: 'pets/getDisplayPets',
-      rows: 'pets/getRows',
-      perPage: 'pets/getPerPage'
+      rows: 'paginate/getRows',
+      perPage: 'paginate/getPerPage'
     }),
     title () {
       if (this.$route.params.species === 'all') {
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     async changePage (selectedPage) {
-      await this.$store.dispatch('pets/changePage', selectedPage)
+      await this.$store.dispatch('paginate/changePage', selectedPage)
     }
   },
   head () {

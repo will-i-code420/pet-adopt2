@@ -13,11 +13,19 @@ export const mutations = {
 }
 
 export const actions = {
-  async setRows ({ commit }, rows) {
+  setRows ({ commit }, rows) {
     commit('SET_ROWS', rows)
   },
-  async setPerPage({ commit }, perPage) {
+  setPerPage ({ commit }, perPage) {
     commit('SET_PER_PAGE', perPage)
+  },
+  changePage ({ dispatch, state }, selectedPage) {
+    const start = (selectedPage - 1) * state.perPage
+    const payload = {
+      start,
+      perPage: state.perPage
+    }
+    dispatch('pets/updateCurrentPets', payload, { root: true })
   }
 }
 

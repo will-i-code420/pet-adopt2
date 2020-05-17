@@ -1,7 +1,7 @@
 export const state = () => ({
   pets: [],
   currentPets: [],
-  displayPets: [],
+  displayPets: []
 })
 
 export const mutations = {
@@ -39,13 +39,12 @@ export const actions = {
     } else {
       pets = await state.pets.filter(pet => pet.species === species && pet.adopted === false)
     }
-    dispatch('paginate/setRows', pets.length, { root: true })
     commit('SET_CURRENT_PETS', pets)
-    dispatch('changePage', 1)
+    dispatch('paginate/setRows', pets.length, { root: true })
+    dispatch('paginate/changePage', 1, { root: true })
   },
-  async changePage ({ commit, state }, selectedPage) {
-    const start = (selectedPage - 1) * state.perPage
-    const pets = await state.currentPets.slice(start, start + state.perPage)
+  async updateCurrentPets ({ commit, state }, { start, perPage }) {
+    const pets = await state.currentPets.slice(start, start + perPage)
     commit('SET_DISPLAY_PETS', pets)
   }
 }
