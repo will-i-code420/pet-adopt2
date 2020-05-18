@@ -50,8 +50,7 @@ export default {
     SearchBar
   },
   mounted () {
-    const species = this.$route.params.species.substring(0, 3)
-    this.$store.dispatch('pets/setCurrentPets', species)
+    this.$store.dispatch('pets/setCurrentPets', this.$route.params.species)
   },
   computed: {
     ...mapGetters({

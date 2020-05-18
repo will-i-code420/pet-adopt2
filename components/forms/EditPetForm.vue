@@ -195,8 +195,8 @@ export default {
   data () {
     return {
       animalOptions: [
-        { text: 'Cat', value: 'cat' },
-        { text: 'Dog', value: 'dog' }
+        { text: 'Cat', value: 'cats' },
+        { text: 'Dog', value: 'dogs' }
       ],
       genderOptions: [
         { text: 'Male', value: 'male' },

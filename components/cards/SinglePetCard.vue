@@ -29,7 +29,11 @@
       </b-col>
     </b-row>
     </b-card>
-    <ContactForm v-if="sendAnimalInquiry" :animalInquiry="true" :pet="pet"/>
+    <b-row class="my-5">
+      <b-col cols="10" offset="1">
+        <ContactForm v-if="sendAnimalInquiry" :animalInquiry="true" :pet="pet"/>
+      </b-col>
+    </b-row>
   </article>
 </template>
 

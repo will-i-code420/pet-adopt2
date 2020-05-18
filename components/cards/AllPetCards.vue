@@ -10,11 +10,12 @@
       class="mb-4 text-center"
     >
       <b-card-text>
+        <p>Gender: {{ pet.gender }}</p>
         <p>Breed: {{ pet.breed }}</p>
         <p>Age: {{ pet.age }}</p>
         <p>{{ pet.description.substring(0, 75) + '...' }}</p>
       </b-card-text>
-      <nuxt-link :to="$route.params.species + '/' + pet._id">
+      <nuxt-link :to="`/pets/${pet.species}/${pet._id}`">
         View Details
       </nuxt-link>
     </b-card>

@@ -9,13 +9,16 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col>
-          <AllPetCards
-            v-for="pet in pets"
-            :key="pet._id"
-            :pet="pet"
-          />
+        <b-col cols="6" offset="3" >
+          <SearchBar />
         </b-col>
+      </b-row>
+      <b-row>
+        <AllPetCards
+          v-for="pet in pets"
+          :key="pet._id"
+          :pet="pet"
+        />
       </b-row>
       <b-row class="mt-3">
         <b-col cols="4" offset="4">
@@ -39,10 +42,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
+import SearchBar from '~/components/SearchBar'
 
 export default {
   components: {
-    AllPetCards
+    AllPetCards,
+    SearchBar
   },
   computed: {
     ...mapGetters({
