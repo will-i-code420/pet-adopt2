@@ -12,13 +12,6 @@
           </b-nav-item-dropdown>
           <b-nav-item to="/about">About Us</b-nav-item>
           <b-nav-item to="/contact">Contact</b-nav-item>
-          <b-nav-form @submit.prevent="searchAnimals">
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Search by breed or keywords" v-model="searchQuery">
-            </b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0">
-              Search
-            </b-button>
-          </b-nav-form>
           <TopNavLogin v-if="!user.username" />
           <TopNavLoggedIn v-else :username="user.username" :id="user._id" :role="user.role" />
         </b-navbar-nav>
@@ -41,20 +34,7 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user
-    }),
-    searchQuery: {
-      get () {
-        return this.$store.state.search.searchQuery
-      },
-      set (query) {
-        this.$store.dispatch('search/setSeachQuery', query)
-      }
-    }
-  },
-  methods: {
-    searchAnimals () {
-      this.$store.dispatch('search/submitSearch')
-    }
+    })
   }
 }
 </script>

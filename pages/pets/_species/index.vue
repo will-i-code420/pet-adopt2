@@ -9,6 +9,7 @@
         </b-col>
       </b-row>
       <b-row>
+        <SearchBar />
         <AllPetCards
           v-for="pet in pets"
           :key="pet._id"
@@ -37,10 +38,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
+import SearchBar from '~/components/SearchBar'
 
 export default {
   components: {
-    AllPetCards
+    AllPetCards,
+    SearchBar
   },
   mounted () {
     const species = this.$route.params.species.substring(0, 3)
