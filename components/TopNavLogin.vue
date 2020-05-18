@@ -27,32 +27,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TopNavLogin',
+  computed: {
+    ...mapGetters({
+      error: 'messages/getErrorStatus',
+      errorMsg: 'messages/getErrorMsg'
+    })
+  },
   data () {
     return {
       loginForm: {
         name: '',
         password: ''
-      },
-      error: false,
-      errorMsg: ''
+      }
     }
   },
   methods: {
-    async loginUser () {
-      try {
-        if (this.error) {
-          this.error = false
-          this.errorMsg = ''
-        }
-        await this.$store.dispatch('user/login', this.loginForm)
-        this.loginForm.name = ''
-        this.loginForm.password = ''
-      } catch (e) {
-        this.errorMsg = e.response.data.msg
-        this.error = true
-      }
+    loginUser () {
+      this.$store.dispatch('user/login', this.loginForm)
     }
   }
 }
