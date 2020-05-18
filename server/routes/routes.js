@@ -10,6 +10,7 @@ module.exports = app => {
   app.post('/pets', petController.addPet)
   app.put('/pets/:id', petController.updateSinglePet)
   app.get('/pets', petController.getAllPets)
+  app.post('/pets/:query', petController.getSearchedPets)
   app.delete('/pets/:id', petController.deleteSinglePet)
   /* no need for route currently, may delete
   app.get('/pets/:id', petController.getSinglePet) */

@@ -1,10 +1,10 @@
 <template>
-  <section :id="$route.params.species + 'container'">
-    <b-container>
+  <section id="search-results-container">
+    <b-container class="my-4">
       <b-row>
         <b-col>
-          <h1 class="text-center py-3">
-            All {{ title }} Looking For A New Home
+          <h1 class="text-center mb-3">
+            {{ title }} Search Results
           </h1>
         </b-col>
       </b-row>
@@ -20,7 +20,7 @@
           :pet="pet"
         />
       </b-row>
-      <b-row>
+      <b-row class="mt-3">
         <b-col cols="4" offset="4">
           <b-pagination
             v-model="currentPage"
@@ -49,22 +49,12 @@ export default {
     AllPetCards,
     SearchBar
   },
-  mounted () {
-    this.$store.dispatch('pets/setCurrentPets', this.$route.params.species)
-  },
   computed: {
     ...mapGetters({
       pets: 'pets/getDisplayPets',
       rows: 'paginate/getRows',
       perPage: 'paginate/getPerPage'
     }),
-    title () {
-      if (this.$route.params.species === 'all') {
-        return 'Pets'
-      } else {
-        return this.$route.params.species.replace(/^./, this.$route.params.species[0].toUpperCase())
-      }
-    },
     currentPage: {
       get () {
         return this.$store.state.paginate.currentPage
@@ -72,6 +62,9 @@ export default {
       set (page) {
         this.$store.dispatch('paginate/setCurrentPage', page)
       }
+    },
+    title () {
+      return this.$route.params.query.replace(/^./, this.$route.params.query[0].toUpperCase())
     }
   },
   methods: {
@@ -81,12 +74,12 @@ export default {
   },
   head () {
     return {
-      title: `All ${this.title} For Adoption`,
+      title: `${this.title} Search Results`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `Current list of all ${this.$route.params.species} looking for a new home or donations to help`
+          content: `List of all ${this.title} pets looking for a new home`
         }
       ]
     }
