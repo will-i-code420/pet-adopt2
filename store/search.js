@@ -20,7 +20,10 @@ export const actions = {
     commit('SET_SEARCH_TYPE', type)
   },
   async submitSearch ({ dispatch, state }) {
-    const results = await this.$axios.get(`/pets/${state.searchQuery}`, state.searchType)
+    const payload = {
+      type: state.searchType
+    }
+    const results = await this.$axios.post(`/pets/${state.searchQuery}`, payload)
     dispatch('pets/setSearchPets', results.data.pets, { root: true })
   }
 }

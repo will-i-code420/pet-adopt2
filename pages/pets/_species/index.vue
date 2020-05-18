@@ -21,7 +21,7 @@
         />
       </b-row>
       <b-row>
-        <b-col cols="6" offset="3">
+        <b-col cols="4" offset="4">
           <b-pagination
             v-model="currentPage"
             :total-rows="rows"
