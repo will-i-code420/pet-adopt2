@@ -31,7 +31,6 @@ module.exports = {
   async getSearchedPets (req, res) {
     const query = new RegExp(req.params.query, 'i')
     const type = req.body.type
-    console.log(`Searching by ${type}, for ${query}`)
     try {
       let pets = await Pet.find({ [type]: query })
       console.log(pets)
