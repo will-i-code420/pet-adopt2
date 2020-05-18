@@ -9,7 +9,11 @@
         </b-col>
       </b-row>
       <b-row>
-        <SearchBar />
+        <b-col cols="6" offset="3" >
+          <SearchBar />
+        </b-col>
+      </b-row>
+      <b-row>
         <AllPetCards
           v-for="pet in pets"
           :key="pet._id"

@@ -1,11 +1,12 @@
 <template>
   <div class="search-bar-container">
     <Form>
-      <slot name="form-group-1">
-        <b-form-group
+      <template #form-group-1>
+        <b-input-group
           id="input-group-search"
-          label="Pet Name:"
           label-for="search"
+          label-cols="auto"
+          prepend="Search:"
         >
         <b-form-input
           id="search"
@@ -14,10 +15,13 @@
           required
           :placeholder="`Searching by ${searchType}`"
         ></b-form-input>
-        </b-form-group>
-      </slot>
-      <slot name="form-group-2">
-        <b-form-group label="Search Type">
+        <b-button variant="primary" class="ml-2 my-2 my-sm-0" @click="searchAnimals">
+          Search
+        </b-button>
+      </b-input-group>
+      </template>
+      <template #form-group-2>
+        <b-form-group label="Search By:" class="text-center mt-2">
           <b-form-radio-group
             id="type"
             v-model="searchType"
@@ -26,12 +30,7 @@
             required
           ></b-form-radio-group>
         </b-form-group>
-      </slot>
-      <slot name="btn1">
-        <b-button class="my-2 my-sm-0" @click="searchAnimals">
-          Search
-        </b-button>
-      </slot>
+      </template>
     </Form>
   </div>
 </template>
