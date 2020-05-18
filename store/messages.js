@@ -1,6 +1,7 @@
 export const state = () => ({
   successMsg: '',
-  errorMsg: ''
+  errorMsg: '',
+  errorStatus: false
 })
 
 export const mutations = {
@@ -9,10 +10,16 @@ export const mutations = {
   },
   SET_SUCCESS_MSG (state, msg) {
     state.successMsg = msg
+  },
+  SET_ERROR_STATUS (state, status) {
+    state.errorStatus = status
   }
 }
 
 export const actions = {
+  setErrorStatus ({ commit }, status) {
+    commit('SET_ERROR_STATUS', status)
+  },
   setErrorMsg ({ commit }, msg) {
     commit('SET_ERROR_MSG', msg)
   },
@@ -31,5 +38,8 @@ export const getters = {
   },
   getSuccessMsg (state) {
     return state.successMsg
+  },
+  getErrorStatus (state) {
+    return state.errorStatus
   }
 }
