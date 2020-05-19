@@ -105,7 +105,7 @@ export default {
       if (this.animalInquiry) {
         this.contactForm.petId = this.pet._id
       }
-      await this.$axios.post('/contact', this.contactForm)
+      await this.$store.dispatch('contacts/submitNewContact', this.contactForm)
       this.clearContactForm()
     },
     clearContactForm () {
