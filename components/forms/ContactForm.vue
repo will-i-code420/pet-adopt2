@@ -62,24 +62,6 @@
         Contact Us
       </b-button>
     </template>
-    <template #errorMsg>
-      <b-alert
-        :show="error"
-        variant="danger"
-      >
-        {{ errorMsg }}
-      </b-alert>
-    </template>
-    <template #successMsg>
-      <b-alert
-        :show="submitted"
-        dismissible
-        fade
-        variant="success"
-      >
-        {{ submittedMsg }}
-      </b-alert>
-    </template>
   </Form>
 </template>
 
@@ -106,34 +88,18 @@ export default {
       contactForm: {
         name: '',
         email: '',
-        info: '',
-        petId: ''
-      },
-      error: false,
-      errorMsg: '',
-      submitted: false,
-      submittedMsg: ''
+        info: ''
+      }
     }
   },
   methods: {
     async submitQuestion (event) {
       event.preventDefault()
-      try {
-        if (this.error) {
-          this.error = false
-          this.errorMsg = ''
-        }
-        if (this.animalInquiry) {
-          this.contactForm.petId = this.pet._id
-        }
-        const res = await this.$axios.post('/contact', this.contactForm)
-        this.submitted = true
-        this.submittedMsg = res.data.msg
-        this.clearContactForm()
-      } catch (err) {
-        this.error = true
-        this.errorMsg = err.response.data.msg
+      if (this.animalInquiry) {
+        this.contactForm.petId = this.pet._id
       }
+      await this.$store.dispatch('contacts/submitNewContact', this.contactForm)
+      this.clearContactForm()
     },
     clearContactForm () {
       this.contactForm.name = ''

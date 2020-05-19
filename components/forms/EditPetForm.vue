@@ -165,24 +165,6 @@
         Submit Changes
       </b-button>
     </template>
-    <template #errorMsg>
-      <b-alert
-        :show="error"
-        variant="danger"
-      >
-        {{ errorMsg }}
-      </b-alert>
-    </template>
-    <template #successMsg>
-      <b-alert
-        :show="submitted"
-        dismissible
-        fade
-        variant="success"
-      >
-        {{ submittedMsg }}
-      </b-alert>
-    </template>
   </Form>
 </template>
 
@@ -215,11 +197,7 @@ export default {
       addingNewNote: false,
       editingNote: false,
       noteIndex: 0,
-      newNote: '',
-      error: false,
-      errorMsg: '',
-      submitted: false,
-      submittedMsg: ''
+      newNote: ''
     }
   },
   methods: {
@@ -228,18 +206,7 @@ export default {
         id: this.pet._id,
         petUpdateForm: this.editPetForm
       }
-      try {
-        if (this.error) {
-          this.error = false
-          this.errorMsg = ''
-        }
-        await this.$store.dispatch('pets/updatePet', payload)
-        this.submitted = true
-        this.submittedMsg = `${this.pet.name} has been updated`
-      } catch (e) {
-        this.error = true
-        this.errorMsg = e.response.data.msg
-      }
+      await this.$store.dispatch('pets/updatePet', payload)
     },
     deleteNote (index) {
       const newNotes = this.editPetForm.notes.filter((note, idx, arr) => arr[idx] !== arr[index])
@@ -277,5 +244,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

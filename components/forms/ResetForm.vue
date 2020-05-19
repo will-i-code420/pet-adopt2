@@ -25,24 +25,6 @@
         Get Username
       </b-button>
     </template>
-    <template #errorMsg>
-      <b-alert
-        :show="error"
-        variant="danger"
-      >
-        {{ errorMsg }}
-      </b-alert>
-    </template>
-    <template #successMsg>
-      <b-alert
-        :show="submitted"
-        dismissible
-        fade
-        variant="success"
-      >
-        {{ resetMsg }}
-      </b-alert>
-    </template>
   </Form>
 </template>
 
@@ -53,27 +35,17 @@ export default {
     return {
       resetForm: {
         email: ''
-      },
-      submitted: false,
-      resetMsg: '',
-      error: false,
-      errorMsg: ''
+      }
     }
   },
   methods: {
     async submitReset (route) {
-      try {
-        if (this.error) {
-          this.errorMsg = ''
-          this.error = false
-        }
-        const res = await this.$axios.post(`${route}`, this.resetForm)
-        this.resetMsg = res.data.msg
-        this.submitted = true
-      } catch (e) {
-        this.errorMsg = e.response.data.msg
-        this.error = true
+      const payload = {
+        route,
+        resetForm: this.resetForm
       }
+      await this.$store.dispatch('user/reset', payload)
+      this.resetForm.email = ''
     }
   }
 }

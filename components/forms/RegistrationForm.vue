@@ -84,14 +84,6 @@
         Register
       </b-button>
     </template>
-    <template #errorMsg>
-      <b-alert
-        :show="error"
-        variant="danger"
-      >
-        {{ errorMsg }}
-      </b-alert>
-    </template>
   </Form>
 </template>
 
@@ -106,9 +98,7 @@ export default {
         username: '',
         password: ''
       },
-      password2: '',
-      error: false,
-      errorMsg: ''
+      password2: ''
     }
   },
   computed: {
@@ -136,20 +126,19 @@ export default {
       return this.registrationForm.password === this.password2
     },
     async registerUser () {
-      try {
-        if (this.error) {
-          this.errorMsg = ''
-          this.error = false
-        }
-        const validPassword = await this.comparePassword()
-        if (validPassword) {
-          await this.$store.dispatch('user/register', this.registrationForm)
-          this.$router.push({ path: '/' })
-        }
-      } catch (e) {
-        this.errorMsg = e.response.data.msg
-        this.error = true
+      const validPassword = await this.comparePassword()
+      if (validPassword) {
+        await this.$store.dispatch('user/register', this.registrationForm)
       }
+      this.clearRegistrationForm()
+      this.$router.push({ path: '/' })
+    },
+    clearRegistrationForm () {
+      this.registrationForm.name = ''
+      this.registrationForm.email = ''
+      this.registrationForm.username = ''
+      this.registrationForm.password = ''
+      this.password2 = ''
     }
   }
 }

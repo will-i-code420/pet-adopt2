@@ -25,7 +25,7 @@ export default {
   },
   head () {
     return {
-      title: 'Pet Adopt User Profile',
+      title: `Adopt-A-Pet ${this.user.name} Profile`,
       meta: [
         {
           hid: 'description',

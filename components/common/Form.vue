@@ -25,10 +25,8 @@
       </slot>
       <slot name="btn2">
       </slot>
-      <slot name="errorMsg">
-      </slot>
-      <slot name="successMsg">
-      </slot>
+      <ErrorMsg />
+      <SuccessMsg />
     </b-form>
   </div>
 </template>

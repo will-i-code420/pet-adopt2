@@ -77,7 +77,7 @@
       <template #form-group-6>
         <b-form-group
           id="input-group-weight"
-          label="Pet Age:"
+          label="Pet Weight:"
           label-for="weight"
         >
         <b-form-input
@@ -141,24 +141,6 @@
           Add Pet
         </b-button>
       </template>
-      <template #errorMsg>
-        <b-alert
-          :show="error"
-          variant="danger"
-        >
-          {{ errorMsg }}
-        </b-alert>
-      </template>
-      <template #successMsg>
-        <b-alert
-          :show="submitted"
-          dismissible
-          fade
-          variant="success"
-        >
-          {{ submittedMsg }}
-        </b-alert>
-      </template>
     </Form>
   </section>
 </template>
@@ -191,11 +173,7 @@ export default {
         description: '',
         species: '',
         notes: []
-      },
-      error: false,
-      errorMsg: '',
-      submitted: false,
-      submittedMsg: ''
+      }
     }
   },
   methods: {
@@ -204,19 +182,8 @@ export default {
       this.specialNote = ''
     },
     async addNewPet () {
-      try {
-        if (this.error) {
-          this.error = false
-          this.errorMsg = ''
-        }
-        await this.$store.dispatch('pets/addNewPet', this.newPetForm)
-        this.submitted = true
-        this.submittedMsg = `${this.newPetForm.name} has been added`
-        this.clearPetForm()
-      } catch (e) {
-        this.error = true
-        this.errorMsg = e.response.data.msg
-      }
+      await this.$store.dispatch('pets/addNewPet', this.newPetForm)
+      this.clearPetForm()
     },
     clearPetForm () {
       this.newPetForm.name = ''

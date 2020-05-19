@@ -6,13 +6,7 @@
       <b-button @click="loginUser" size="sm" class="my-2 my-sm-2 mx-auto">
         Login
       </b-button>
-      <b-alert
-        :show="error"
-        variant="danger"
-        class="text-center"
-      >
-        {{ errorMsg }}
-      </b-alert>
+      <ErrorMsg />
     </b-nav-form>
     <hr>
     <div class="login-links">
@@ -34,25 +28,12 @@ export default {
       loginForm: {
         name: '',
         password: ''
-      },
-      error: false,
-      errorMsg: ''
+      }
     }
   },
   methods: {
-    async loginUser () {
-      try {
-        if (this.error) {
-          this.error = false
-          this.errorMsg = ''
-        }
-        await this.$store.dispatch('user/login', this.loginForm)
-        this.loginForm.name = ''
-        this.loginForm.password = ''
-      } catch (e) {
-        this.errorMsg = e.response.data.msg
-        this.error = true
-      }
+    loginUser () {
+      this.$store.dispatch('user/login', this.loginForm)
     }
   }
 }

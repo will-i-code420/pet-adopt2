@@ -24,14 +24,9 @@ export default {
   components: {
     ResetForm
   },
-  data () {
-    return {
-      forgotUsername: false
-    }
-  },
   head () {
     return {
-      title: 'Pet Adopt User Account Reset',
+      title: 'Adopt-A-Pet Account Reset',
       meta: [
         {
           hid: 'description',
