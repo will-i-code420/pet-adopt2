@@ -3,7 +3,7 @@
     <b-dropdown-item to="/dashboard" class="text-center" v-if="role !== 'user'">
       Dashboard
     </b-dropdown-item>
-    <b-dropdown-item :to="'/profile/' + id" class="text-center">
+    <b-dropdown-item :to="`/profile/${id}`" class="text-center">
       Profile
     </b-dropdown-item>
     <hr>
