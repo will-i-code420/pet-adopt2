@@ -105,7 +105,6 @@ export default {
       this.contactForm.name = ''
       this.contactForm.email = ''
       this.contactForm.info = ''
-      this.contactForm.animalId = null
     }
   }
 }
