@@ -24,7 +24,7 @@ module.exports = {
     } catch (e) {
       console.log(e)
       res.status(500).json({
-        msg: 'An error occured please try again'
+        msg: e.message
       })
     }
   },
@@ -46,7 +46,7 @@ module.exports = {
     } catch (e) {
       console.log(e)
       res.status(500).json({
-        msg: 'An error occured please try again'
+        msg: e.message
       })
     }
   },
@@ -75,7 +75,7 @@ module.exports = {
     } catch (e) {
       console.log(e)
       res.status(500).json({
-        msg: 'An error occured please try again'
+        msg: e.message
       })
     }
   },
@@ -88,7 +88,7 @@ module.exports = {
     } catch (e) {
       console.log(e)
       res.status(500).json({
-        msg: 'An error occured please try again'
+        msg: e.message
       })
     }
   }
