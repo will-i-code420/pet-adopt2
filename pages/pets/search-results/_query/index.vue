@@ -32,12 +32,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
-import SearchBar from '~/components/SearchBar'
 
 export default {
   components: {
-    AllPetCards,
-    SearchBar
+    AllPetCards
   },
   computed: {
     ...mapGetters({

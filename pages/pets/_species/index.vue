@@ -32,12 +32,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
-import SearchBar from '~/components/SearchBar'
 
 export default {
   components: {
-    AllPetCards,
-    SearchBar
+    AllPetCards
   },
   mounted () {
     this.$store.dispatch('pets/setCurrentPets', this.$route.params.species)
