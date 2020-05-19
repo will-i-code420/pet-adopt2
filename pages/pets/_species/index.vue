@@ -22,17 +22,7 @@
       </b-row>
       <b-row>
         <b-col cols="4" offset="4">
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
-            first-text="⏮"
-            prev-text="⏪"
-            next-text="⏩"
-            last-text="⏭"
-            @input="changePage(currentPage)"
-          >
-          </b-pagination>
+          <Pagination />
         </b-col>
       </b-row>
     </b-container>
@@ -42,11 +32,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import AllPetCards from '~/components/cards/AllPetCards'
+import Pagination from '~/components/Pagination'
 import SearchBar from '~/components/SearchBar'
 
 export default {
   components: {
     AllPetCards,
+    Pagination,
     SearchBar
   },
   mounted () {
@@ -54,9 +46,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      pets: 'pets/getDisplayPets',
-      rows: 'paginate/getRows',
-      perPage: 'paginate/getPerPage'
+      pets: 'pets/getDisplayPets'
     }),
     title () {
       if (this.$route.params.species === 'all') {
@@ -64,19 +54,6 @@ export default {
       } else {
         return this.$route.params.species.replace(/^./, this.$route.params.species[0].toUpperCase())
       }
-    },
-    currentPage: {
-      get () {
-        return this.$store.state.paginate.currentPage
-      },
-      set (page) {
-        this.$store.dispatch('paginate/setCurrentPage', page)
-      }
-    }
-  },
-  methods: {
-    async changePage (selectedPage) {
-      await this.$store.dispatch('paginate/changePage', selectedPage)
     }
   },
   head () {

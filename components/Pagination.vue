@@ -7,20 +7,33 @@
     prev-text="⏪"
     next-text="⏩"
     last-text="⏭"
+    @input="changePage(currentPage)"
   >
   </b-pagination>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Pagination',
-  props: {
-    rows: Number
+  computed: {
+    ...mapGetters({
+      rows: 'paginate/getRows',
+      perPage: 'paginate/getPerPage'
+    }),
+    currentPage: {
+      get () {
+        return this.$store.state.paginate.currentPage
+      },
+      set (page) {
+        this.$store.dispatch('paginate/setCurrentPage', page)
+      }
+    }
   },
-  data () {
-    return {
-      currentPage: 1,
-      perPage: 3
+  methods: {
+    async changePage (selectedPage) {
+      await this.$store.dispatch('paginate/changePage', selectedPage)
     }
   }
 }
