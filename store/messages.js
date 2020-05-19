@@ -26,11 +26,11 @@ export const actions = {
       case 'error':
         commit('SET_ERROR_STATUS', true)
         dispatch('setErrorMsg', msg)
-      break;
+        break
       case 'success':
         commit('SET_SUCCESS_STATUS', true)
         dispatch('setSuccessMsg', msg)
-      break;
+        break
     }
   },
   setErrorMsg ({ commit }, msg) {

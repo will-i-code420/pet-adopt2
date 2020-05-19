@@ -77,7 +77,7 @@
       <template #form-group-6>
         <b-form-group
           id="input-group-weight"
-          label="Pet Age:"
+          label="Pet Weight:"
           label-for="weight"
         >
         <b-form-input

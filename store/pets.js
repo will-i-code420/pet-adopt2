@@ -25,7 +25,7 @@ export const actions = {
     commit('SET_ALL_PETS', pets.data.pets)
   },
   async addNewPet ({ dispatch }, petForm) {
-    let payload = {
+    const payload = {
       status: null,
       msg: null
     }
