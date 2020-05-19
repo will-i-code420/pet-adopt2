@@ -1,5 +1,8 @@
 <template>
   <b-nav-item-dropdown :text="user.username" right>
+    <b-dropdown-item to="/profile/create-employee" class="text-center" v-if="user.role === 'admin'">
+      Add New Employee
+    </b-dropdown-item>
     <b-dropdown-item to="/dashboard" class="text-center" v-if="user.role !== 'user'">
       Dashboard
     </b-dropdown-item>
