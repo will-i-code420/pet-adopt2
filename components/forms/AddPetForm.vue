@@ -141,12 +141,6 @@
           Add Pet
         </b-button>
       </template>
-      <template #errorMsg>
-        <ErrorMsg />
-      </template>
-      <template #successMsg>
-        <SuccessMsg />
-      </template>
     </Form>
   </section>
 </template>

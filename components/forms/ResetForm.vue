@@ -25,12 +25,6 @@
         Get Username
       </b-button>
     </template>
-    <template #errorMsg>
-      <ErrorMsg />
-    </template>
-    <template #successMsg>
-      <SuccessMsg />
-    </template>
   </Form>
 </template>
 

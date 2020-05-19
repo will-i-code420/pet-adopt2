@@ -4,8 +4,9 @@ module.exports = {
   async received (req, res) {
     try {
       const newContact = await Contact.create(req.body)
+      newContact.save()
       res.status(200).json({
-        msg: `Thank You ${req.body.name}, we have received your request and will send a response to ${email} within 24 hours`
+        msg: `Thank You ${req.body.name}, we have received your request and will send a response to ${req.body.email} within 24 hours`
       })
     } catch (e) {
       console.log(e)

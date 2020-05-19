@@ -62,12 +62,6 @@
         Contact Us
       </b-button>
     </template>
-    <template #errorMsg>
-      <ErrorMsg />
-    </template>
-    <template #successMsg>
-      <SuccessMsg />
-    </template>
   </Form>
 </template>
 
@@ -94,8 +88,7 @@ export default {
       contactForm: {
         name: '',
         email: '',
-        info: '',
-        petId: ''
+        info: ''
       }
     }
   },

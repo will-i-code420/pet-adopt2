@@ -84,9 +84,6 @@
         Register
       </b-button>
     </template>
-    <template #errorMsg>
-      <ErrorMsg />
-    </template>
   </Form>
 </template>
 
