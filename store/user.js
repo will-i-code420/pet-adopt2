@@ -69,5 +69,8 @@ export const actions = {
 export const getters = {
   isAdmin (state) {
     return state.user.role === 'admin'
+  },
+  getUserName (state) {
+    return state.user.username
   }
 }

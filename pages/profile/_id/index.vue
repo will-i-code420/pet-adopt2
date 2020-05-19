@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col cols="8" offset="2">
-          <ProfileCard :user="user" />
+          <ProfileCard />
         </b-col>
       </b-row>
     </b-container>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import ProfileCard from '~/components/cards/ProfileCard'
 
 export default {
@@ -19,13 +19,13 @@ export default {
     ProfileCard
   },
   computed: {
-    ...mapState({
-      user: state => state.user.user
+    ...mapGetters({
+      username: 'user/getUserName'
     })
   },
   head () {
     return {
-      title: `Adopt-A-Pet ${this.user.name} Profile`,
+      title: `Adopt-A-Pet ${this.username} Profile`,
       meta: [
         {
           hid: 'description',
