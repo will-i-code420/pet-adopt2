@@ -51,7 +51,7 @@ export const actions = {
     try {
       const updatedPet = await this.$axios.put(`/pets/${id}`, petUpdateForm)
       payload.status = 'success'
-      payload.msg = newPet.data.msg
+      payload.msg = updatedPet.data.msg
       dispatch('messages/setMsgStatus', payload, { root: true })
       dispatch('getAllPets')
     } catch (e) {
