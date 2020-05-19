@@ -19,7 +19,7 @@
         <b-col md="4">
           <b-card>
             <b-card-text>
-              {{ contactCount }} Contacts Needing Responses
+              {{ contactCount }} Inquiries Needing Responses
             </b-card-text>
           </b-card>
         </b-col>
@@ -30,7 +30,7 @@
             Select An Action
           </h3>
           <b-button variant="primary" class="mr-2" @click="respondContact">
-            Respond To Contacts
+            Respond To Inquiries
           </b-button>
           <b-button variant="primary" class="ml-2" @click="viewPets">
             View Unadopted Pets
@@ -74,8 +74,8 @@ export default {
   data () {
     return {
       addingPet: false,
-      viewingPets: false,
-      respondingContacts: true
+      viewingPets: true,
+      respondingContacts: false
     }
   },
   computed: {

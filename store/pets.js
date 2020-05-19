@@ -88,12 +88,10 @@ export const getters = {
     return state.pets.length
   },
   getAdoptedPetsCount (state) {
-    const pets = state.pets.filter(pet => pet.adopted === true)
-    return pets.length
+    return state.pets.filter(pet => pet.adopted === true).length
   },
   getUnadoptedPets (state) {
-    const pets = state.pets.filter(pet => pet.adopted === false)
-    return pets
+    return state.pets.filter(pet => pet.adopted === false)
   },
   getSelectedPet (state) {
     return (id) => {

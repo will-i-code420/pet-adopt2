@@ -1,6 +1,9 @@
 <template>
   <section id="all=contacts-container">
-    <b-table hover :items="allContacts" :fields="fields">
+    <h2 class="mt-2 mb-5">
+      All Inquiries Needing Response
+    </h2>
+    <b-table hover :items="contacts" :fields="fields">
       <template v-slot:cell(action)="data">
         <b-button variant="primary" :to="'dashboard/inquiry-response/' + data.item._id">
           Respond
@@ -11,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'AllContactsTable',
@@ -37,8 +40,8 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      allContacts: state => state.contacts.contacts.filter(contact => contact.followUpRequired === true)
+    ...mapGetters({
+      contacts: 'contacts/getAllResponseRequired'
     })
   }
 }
