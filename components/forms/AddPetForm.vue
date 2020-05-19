@@ -145,7 +145,7 @@
         <ErrorMsg />
       </template>
       <template #successMsg>
-
+        <SuccessMsg />
       </template>
     </Form>
   </section>
