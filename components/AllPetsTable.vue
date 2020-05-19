@@ -1,11 +1,14 @@
 <template>
   <section id="all-pets-table">
-    <b-table hover :items="allPets" :fields="fields">
+    <h2 class="mt-2 mb-5">
+      All Pets For Adoption
+    </h2>
+    <b-table hover :items="pets" :fields="fields">
       <template v-slot:cell(action)="data">
-        <b-button variant="primary" size="sm" :to="'dashboard/edit-pet/' + data.item._id">
+        <b-button variant="primary" size="sm" :to="`/dashboard/edit-pet/${data.item._id}`">
           Edit
         </b-button>
-        <b-button variant="primary" size="sm" @click="markAdopted(data.item)">
+        <b-button variant="primary" size="sm" @click="markAdopted(data.item._id)">
           Mark Adopted
         </b-button>
         <b-button v-if="isAdmin" variant="primary" size="sm" @click="deletePet(data.item._id)">
@@ -33,7 +36,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      allPets: 'pets/getUnadoptedPets',
+      pets: 'pets/getUnadoptedPets',
       isAdmin: 'user/isAdmin'
     })
   },

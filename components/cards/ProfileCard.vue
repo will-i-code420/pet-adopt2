@@ -39,15 +39,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'ProfileCard',
-  props: {
-    user: Object
-  },
   data () {
     return {
       editing: false
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user/getAllUserInfo'
+    })
   },
   methods: {
     editProfile () {

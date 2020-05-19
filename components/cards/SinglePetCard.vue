@@ -45,10 +45,11 @@ export default {
   components: {
     ContactForm
   },
-  props: {
-    pet: Object
-  },
   computed: {
+    pet () {
+      const pet = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
+      return pet[0]
+    },
     petNotes () {
       return this.pet.notes.length
     }

@@ -171,8 +171,11 @@
 <script>
 export default {
   name: 'EditPetForm',
-  props: {
-    pet: Object
+  computed: {
+    pet () {
+      const pet = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
+      return pet[0]
+    }
   },
   data () {
     return {

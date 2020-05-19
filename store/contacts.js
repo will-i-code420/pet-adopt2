@@ -40,5 +40,8 @@ export const getters = {
     return (id) => {
       return state.contacts.filter(contact => contact._id === id)
     }
+  },
+  getAllResponseRequired (state) {
+    return state.contacts.filter(contact => contact.followUpRequired === true)
   }
 }

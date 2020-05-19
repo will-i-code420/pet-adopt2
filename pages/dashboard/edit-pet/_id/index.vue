@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col cols="8" offset="2">
-          <EditPetForm :pet="pet" />
+          <EditPetForm />
         </b-col>
       </b-row>
     </b-container>
@@ -17,10 +17,16 @@ export default {
   components: {
     EditPetForm
   },
-  computed: {
-    pet () {
-      const pet = this.$store.getters['pets/getSelectedPet'](this.$route.params.id)
-      return pet[0]
+  head () {
+    return {
+      title: 'Adopt-A-Pet Editing Pet',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Edit current pet information'
+        }
+      ]
     }
   }
 }
