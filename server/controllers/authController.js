@@ -4,13 +4,14 @@ module.exports = {
   async register (req, res) {
     try {
       const newUser = await User.create(req.body)
+      newUser.save()
       res.status(201).json({
         user: newUser.toJSON()
       })
     } catch (e) {
       console.log(e)
       res.status(500).json({
-        msg: 'An error occured, please try again'
+        msg: e.message
       })
     }
   },

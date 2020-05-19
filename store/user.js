@@ -29,9 +29,20 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
-  async register ({ commit }, userInfo) {
-    const newUser = await this.$axios.post('/register', userInfo)
-    commit('SET_USER', newUser.data.user)
+  async register ({ commit, dispatch }, userInfo) {
+    const payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const newUser = await this.$axios.post('/register', userInfo)
+      commit('SET_USER', newUser.data.user)
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
   },
   logout ({ commit }) {
     commit('LOGOUT_USER')
