@@ -12,7 +12,7 @@
           </b-nav-item-dropdown>
           <b-nav-item to="/about">About Us</b-nav-item>
           <b-nav-item to="/contact">Contact</b-nav-item>
-          <TopNavLogin v-if="!user.username" />
+          <TopNavLogin v-if="!user" />
           <TopNavLoggedIn v-else :username="user.username" :id="user._id" :role="user.role" />
         </b-navbar-nav>
       </b-collapse>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import TopNavLogin from '~/components/TopNavLogin'
 import TopNavLoggedIn from '~/components/TopNavLoggedIn'
 
@@ -32,8 +32,8 @@ export default {
     TopNavLoggedIn
   },
   computed: {
-    ...mapState({
-      user: state => state.user.user
+    ...mapGetters({
+      user: 'user/isActive'
     })
   }
 }

@@ -1,13 +1,16 @@
 export const state = () => ({
-  user: {}
+  user: {},
+  active: false
 })
 
 export const mutations = {
   SET_USER (state, user) {
     state.user = user
+    state.active = true
   },
   LOGOUT_USER (state) {
     state.user = {}
+    state.active = false
   }
 }
 
@@ -69,6 +72,9 @@ export const actions = {
 export const getters = {
   isAdmin (state) {
     return state.user.role === 'admin'
+  },
+  isActive (state) {
+    return state.active
   },
   getAllUserInfo (state) {
     return state.user

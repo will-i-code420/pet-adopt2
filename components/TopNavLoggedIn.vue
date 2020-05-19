@@ -1,9 +1,9 @@
 <template>
-  <b-nav-item-dropdown :text="username" right>
-    <b-dropdown-item to="/dashboard" class="text-center" v-if="role !== 'user'">
+  <b-nav-item-dropdown :text="user.username" right>
+    <b-dropdown-item to="/dashboard" class="text-center" v-if="user.role !== 'user'">
       Dashboard
     </b-dropdown-item>
-    <b-dropdown-item :to="`/profile/${id}`" class="text-center">
+    <b-dropdown-item :to="`/profile/${user._id}`" class="text-center">
       Profile
     </b-dropdown-item>
     <hr>
@@ -14,12 +14,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'TopNavLoggedIn',
-  props: {
-    username: String,
-    id: String,
-    role: String
+  computed: {
+    ...mapGetters({
+      user: 'user/getAllUserInfo'
+    })
   },
   methods: {
     async logoutUser () {
