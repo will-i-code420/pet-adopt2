@@ -2,7 +2,7 @@ export const state = () => ({
   successMsg: '',
   errorMsg: '',
   errorStatus: false,
-  successStatus: false,
+  successStatus: false
 })
 
 export const mutations = {

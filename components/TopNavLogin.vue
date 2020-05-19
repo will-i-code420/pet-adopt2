@@ -6,13 +6,7 @@
       <b-button @click="loginUser" size="sm" class="my-2 my-sm-2 mx-auto">
         Login
       </b-button>
-      <b-alert
-        :show="error"
-        variant="danger"
-        class="text-center"
-      >
-        {{ errorMsg }}
-      </b-alert>
+      <ErrorMsg />
     </b-nav-form>
     <hr>
     <div class="login-links">
@@ -27,16 +21,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   name: 'TopNavLogin',
-  computed: {
-    ...mapGetters({
-      error: 'messages/getErrorStatus',
-      errorMsg: 'messages/getErrorMsg'
-    })
-  },
   data () {
     return {
       loginForm: {
