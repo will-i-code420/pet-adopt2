@@ -70,6 +70,9 @@ export const getters = {
   isAdmin (state) {
     return state.user.role === 'admin'
   },
+  getAllUserInfo (state) {
+    return state.user
+  },
   getUserName (state) {
     return state.user.username
   }
