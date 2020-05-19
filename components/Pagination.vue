@@ -7,7 +7,6 @@
     prev-text="⏪"
     next-text="⏩"
     last-text="⏭"
-    class="mt-4"
   >
   </b-pagination>
 </template>
