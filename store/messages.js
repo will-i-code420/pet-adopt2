@@ -22,11 +22,11 @@ export const mutations = {
 
 export const actions = {
   setMsgStatus ({ commit, dispatch }, { status, msg }) {
-    if (status === true) {
-      commit('SET_ERROR_STATUS', status)
+    if (status === 'error') {
+      commit('SET_ERROR_STATUS', true)
       dispatch('setErrorMsg', msg)
     } else {
-      commit('SET_SUCCESS_STATUS', status)
+      commit('SET_SUCCESS_STATUS', true)
       dispatch('setSuccessMsg', msg)
     }
   },

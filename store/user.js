@@ -13,8 +13,8 @@ export const mutations = {
 
 export const actions = {
   async login ({ commit, dispatch }, userInfo) {
+    await dispatch('messages/reset', null, { root: true })
     try {
-      await dispatch('messages/reset', null, { root: true })
       const response = await this.$axios.post('/login', userInfo)
       const user = response.data.user
       if (user.role === 'admin' || user.role === 'employee') {
@@ -23,7 +23,7 @@ export const actions = {
       commit('SET_USER', user)
     } catch (e) {
       const payload = {
-        status: true,
+        status: 'error',
         msg: e.response.data.msg
       }
       dispatch('messages/setMsgStatus', payload, { root: true })

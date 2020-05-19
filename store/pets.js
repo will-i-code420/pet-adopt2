@@ -25,8 +25,22 @@ export const actions = {
     commit('SET_ALL_PETS', pets.data.pets)
   },
   async addNewPet ({ dispatch }, petForm) {
-    await this.$axios.post('/pets', petForm)
-    dispatch('getAllPets')
+    let payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const newPet = await this.$axios.post('/pets', petForm)
+      payload.status = 'success'
+      payload.msg = newPet.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+      dispatch('getAllPets')
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
   },
   async updatePet ({ dispatch }, { id, petUpdateForm }) {
     await this.$axios.put(`/pets/${id}`, petUpdateForm)

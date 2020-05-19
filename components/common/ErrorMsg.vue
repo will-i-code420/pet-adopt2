@@ -1,5 +1,5 @@
 <template>
-  <div class="success-msg-container">
+  <div class="error-msg-container">
     <b-alert
       :show="error"
       variant="danger"
