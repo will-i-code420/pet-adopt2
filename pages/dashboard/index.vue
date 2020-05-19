@@ -113,7 +113,7 @@ export default {
   },
   head () {
     return {
-      title: 'Employee Dashboard',
+      title: 'Adopt-A-Pet Employee Dashboard',
       meta: [
         {
           hid: 'description',
