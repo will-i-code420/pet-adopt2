@@ -44,6 +44,23 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
+  async reset ({ dispatch }, { route, resetForm }) {
+    const payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const userReset = await this.$axios.post(`${route}`, resetForm)
+      payload.status = 'success'
+      payload.msg = userReset.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
+  },
   logout ({ commit }) {
     commit('LOGOUT_USER')
   }
