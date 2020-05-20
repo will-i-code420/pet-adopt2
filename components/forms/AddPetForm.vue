@@ -8,7 +8,7 @@
         <hr>
       </template>
       <template #form-group-1>
-        <b-form-group label="Animal Species">
+        <b-form-group label="Animal Species" label-for="species">
           <b-form-radio-group
             id="species"
             v-model="newPetForm.species"
