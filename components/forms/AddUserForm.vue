@@ -1,9 +1,9 @@
 <template>
-  <article id="employee-form">
+  <section id="user-form">
     <Form>
       <template #title>
         <h1 class="my-3 text-center">
-          Adding New Employee
+          Create New User Account
         </h1>
       </template>
       <template #form-group-1>
@@ -47,7 +47,7 @@
         ></b-form-input>
         </b-form-group>
       </template>
-      <template #form-group-3>
+      <template #form-group-4>
         <b-form-group
           id="input-group-email"
           label="Email Address:"
@@ -63,12 +63,12 @@
         </b-form-group>
       </template>
       <template #btn1>
-        <b-button variant="primary" class="my-3 px-5 py-2" @click="addEmployee">
-          Add Pet
+        <b-button variant="primary" class="my-3 px-5 py-2" @click="addUser">
+        Create User
         </b-button>
       </template>
     </Form>
-  </article>
+  </section>
 </template>
 
 <script>
@@ -79,7 +79,7 @@ export default {
       roleOptions: [
         { text: 'Admin', value: 'admin' },
         { text: 'Employee', value: 'employee' },
-        { text: 'User', value: 'user' },
+        { text: 'User', value: 'user' }
       ],
       newUserForm: {
         role: 'employee',
@@ -87,6 +87,19 @@ export default {
         username: '',
         email: ''
       }
+    }
+  },
+  methods: {
+    async addUser (event) {
+      event.preventDefault()
+      await this.$store.dispatch('user/addUser', this.newUserForm)
+      this.clearNewUseForm()
+    },
+    clearNewUseForm () {
+      this.newUserForm.role = 'employee'
+      this.newUserForm.name = ''
+      this.newUserForm.username = ''
+      this.newUserForm.email = ''
     }
   }
 }

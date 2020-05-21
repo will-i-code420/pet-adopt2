@@ -16,6 +16,7 @@ module.exports = app => {
   app.get('/pets/:id', petController.getSinglePet) */
   app.post('/login', authController.login)
   app.post('/register', authControllerPolicy.register, authController.register)
+  app.post('/add-user', authControllerPolicy.addUser, authController.addUser)
   app.post('/resetPassword', authControllerPolicy.reset, authController.resetPassword)
   app.post('/getUsername', authControllerPolicy.reset, authController.getUsername)
 }

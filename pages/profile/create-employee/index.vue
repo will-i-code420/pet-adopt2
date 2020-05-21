@@ -1,9 +1,9 @@
 <template>
-  <section id="create-employee-container">
+  <section id="create-user-container">
     <b-container>
       <b-row>
-        <b-col>
-          <AddEmployeeForm />
+        <b-col cols="8" offset="2">
+          <AddUserForm />
         </b-col>
       </b-row>
     </b-container>
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import AddEmployeeForm from '~/components/forms/AddEmployeeForm'
+import AddUserForm from '~/components/forms/AddUserForm'
 
 export default {
   components: {
-    AddEmployeeForm
+    AddUserForm
   },
   head () {
     return {

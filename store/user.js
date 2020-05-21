@@ -47,6 +47,23 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
+  async addUser ({ dispatch }, newUserForm) {
+    const payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const newUser = await this.$axios.post('/add-user', newUserForm)
+      payload.status = 'success'
+      payload.msg = newUser.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
+  },
   async reset ({ dispatch }, { route, resetForm }) {
     const payload = {
       status: null,

@@ -15,6 +15,20 @@ module.exports = {
       })
     }
   },
+  async addUser (req, res) {
+    try {
+      const newUser = await User.create(req.body)
+      newUser.save()
+      res.status(201).json({
+        msg: `${req.body.name} account created with username: ${req.body.username}`
+      })
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: e.message
+      })
+    }
+  },
   async login (req, res) {
     const {name, password} = req.body
     try {
