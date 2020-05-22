@@ -27,8 +27,8 @@
         </a>
       </b-card-body>
       <b-card-footer>
-        <b-button variant="primary" class="my-3 mr-3" @click="editProfile">
-          Edit Profile
+        <b-button variant="primary" class="my-3 mr-3" @click="editProfileInfo">
+          Edit Info
         </b-button>
         <b-button variant="primary" class="my-3 ml-3" @click="editAvatar">
           Change Avatar
@@ -54,7 +54,7 @@ export default {
     })
   },
   methods: {
-    editProfile () {
+    editProfileInfo () {
       alert('editing profile')
     },
     editAvatar () {

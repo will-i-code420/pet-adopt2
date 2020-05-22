@@ -56,7 +56,7 @@
         <b-form-input
           id="email"
           v-model="newUserForm.email"
-          type="text"
+          type="email"
           required
           placeholder="example@mail.com"
         ></b-form-input>
