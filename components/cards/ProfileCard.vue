@@ -45,6 +45,9 @@ import EditUserForm from '~/components/forms/EditUserForm'
 
 export default {
   name: 'ProfileCard',
+  components: {
+    EditUserForm
+  },
   data () {
     return {
       editing: false

@@ -15,7 +15,7 @@
           :placeholder="user.name"
         ></b-form-input>
         </b-form-group>
-      </tempalte>
+      </template>
       <template #form-group-2>
         <b-form-group
           id="input-group-username"
@@ -30,7 +30,7 @@
           :placeholder="user.username"
         ></b-form-input>
         </b-form-group>
-      </tempalte>
+      </template>
       <template #form-group-3>
         <b-form-group
           id="input-group-email"
@@ -45,15 +45,15 @@
           :placeholder="user.email"
         ></b-form-input>
         </b-form-group>
-      </tempalte>
+      </template>
       <template #form-group-4>
         <b-form-group
           id="input-group-password"
           label="Old Password:"
-          label-for="password"
+          label-for="old-password"
         >
         <b-form-input
-          id="password"
+          id="old-password"
           v-model="editUserForm.oldPassword"
           type="password"
           required
@@ -83,12 +83,12 @@
           required
         ></b-form-input>
         </b-form-group>
-      </tempalte>
-      <slot name="btn1">
+      </template>
+      <template #btn1>
         <b-button variant="primary" class="my-3 mr-3" @click="submitProfileEdit">
           Submit
         </b-button>
-      </slot>
+      </template>
     </Form>
   </section>
 </template>
@@ -98,23 +98,23 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'EditUserForm',
-  data () {
-    return {
-      editUserForm: {
-        id: this.user._id
-        name: '',
-        username: '',
-        email: '',
-        oldPassword,
-        newPassword: ''
-      }
-      password2: ''
-    }
-  },
   computed: {
     ...mapGetters({
       user: 'user/getAllUserInfo'
     })
+  },
+  data () {
+    return {
+      editUserForm: {
+        id: this.$route.params.id,
+        name: '',
+        username: '',
+        email: '',
+        oldPassword: '',
+        newPassword: ''
+      },
+      password2: ''
+    }
   },
   methods: {
     checkPassword () {
@@ -126,10 +126,10 @@ export default {
           status: 'error',
           msg: 'New Password does not match Confirm Password!'
         }
-        this.$store.disptach('messages/setMsgStatus', payload)
+        return this.$store.disptach('messages/setMsgStatus', payload)
       }
       await this.$store.dispatch('user/updateInfo', this.editUserForm)
-      this.clearEditUserForm()
+      await this.clearEditUserForm()
       this.$emit('edit-submitted')
     },
     clearEditUserForm () {
