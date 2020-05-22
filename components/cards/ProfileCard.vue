@@ -1,13 +1,16 @@
 <template>
   <section id="profile-container" class="my-4 text-center">
-    <h1 class="my-4" v-if="!editing">
+    <h1 class="my-4" v-if="!editingInfo && !editingPass">
       {{ user.name }} Profile
     </h1>
-    <h1 class="my-4" v-else>
+    <h1 class="my-4" v-if="editingInfo">
       Editing {{ user.name }} Profile
     </h1>
+    <h1 class="my-4" v-if="editingPass">
+      Change {{ user.name }} Password
+    </h1>
     <b-card
-      v-if="!editing"
+      v-if="!editingInfo && !editingPass"
       no-body
       img-src="https://placekitten.com/380/200"
       img-alt="Image"
@@ -32,6 +35,9 @@
         </a>
       </b-card-body>
       <b-card-footer>
+        <b-button variant="primary" class="my-3 mr-3" @click="editPassword">
+          Change Password
+        </b-button>
         <b-button variant="primary" class="my-3 mr-3" @click="editProfileInfo">
           Edit Info
         </b-button>
@@ -40,7 +46,7 @@
         </b-button>
       </b-card-footer>
     </b-card>
-    <EditUserForm v-else @edit-submitted="editProfileInfo" />
+    <EditUserForm v-if="editingInfo" @edit-submitted="editProfileInfo" />
   </section>
 </template>
 
@@ -55,7 +61,8 @@ export default {
   },
   data () {
     return {
-      editing: false
+      editingInfo: false,
+      editingPass: false,
     }
   },
   computed: {
@@ -65,7 +72,10 @@ export default {
   },
   methods: {
     editProfileInfo () {
-      this.editing = !this.editing
+      this.editingInfo = !this.editingInfo
+    },
+    editPassword () {
+      this.editingPass = !this.editingPass
     },
     editAvatar () {
       alert('uploading new avatar')
