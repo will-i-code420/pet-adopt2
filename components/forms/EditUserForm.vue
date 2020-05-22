@@ -47,8 +47,19 @@
         </b-form-group>
       </template>
       <template #form-group-4>
+        <b-form-group label="Change Password" label-for="change-password">
+          <b-form-radio-group
+            id="change-password"
+            v-model="updatePassword"
+            :options="passwordOptions"
+            name="password-options"
+          ></b-form-radio-group>
+        </b-form-group>
+      </template>
+      <template #form-group-5>
         <b-form-group
-          id="input-group-password"
+          v-if="updatePassword"
+          id="input-group-old-password"
           label="Old Password:"
           label-for="old-password"
         >
@@ -60,6 +71,7 @@
         ></b-form-input>
         </b-form-group>
         <b-form-group
+          v-if="updatePassword"
           id="input-group-password"
           label="New Password:"
           label-for="password"
@@ -72,12 +84,13 @@
         ></b-form-input>
         </b-form-group>
         <b-form-group
-          id="input-group-password"
+          v-if="updatePassword"
+          id="input-group-confirm-password"
           label="Confirm New Password:"
-          label-for="password"
+          label-for="confirm-password"
         >
         <b-form-input
-          id="password"
+          id="confirm-password"
           v-model="password2"
           type="password"
           required
@@ -105,6 +118,10 @@ export default {
   },
   data () {
     return {
+      passwordOptions: [
+        { text: 'Yes', value: true },
+        { text: 'No', value: false }
+      ],
       editUserForm: {
         id: this.$route.params.id,
         name: '',
@@ -113,6 +130,7 @@ export default {
         oldPassword: '',
         newPassword: ''
       },
+      updatePassword: false,
       password2: ''
     }
   },
