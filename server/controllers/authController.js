@@ -54,6 +54,21 @@ module.exports = {
       })
     }
   },
+  async update (req, res) {
+    try {
+      const user = await User.findByIdAndUpdate(req.params.id, req.body)
+      user.save()
+      res.status(200).json({
+        msg: `${req.body.name} profile updated`,
+        user: user
+      })
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: e.message
+      })
+    }
+  },
   // need to implement actual send email functionality for below routes
   async resetPassword (req, res) {
     const email = req.body.email
