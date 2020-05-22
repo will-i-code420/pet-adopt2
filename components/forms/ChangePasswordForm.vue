@@ -82,6 +82,7 @@ export default {
       }
       await this.$store.dispatch('user/changePassword', payload)
       this.clearPasswordForm()
+      // this.$emit('pass-submitted')
     },
     clearPasswordForm () {
       this.changePasswordForm.currentPassword = ''

@@ -47,17 +47,20 @@
       </b-card-footer>
     </b-card>
     <EditUserForm v-if="editingInfo" @edit-submitted="editProfileInfo" />
+    <ChangePasswordForm v-if="editingPass" @pass-submitted="editPassword" />
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import EditUserForm from '~/components/forms/EditUserForm'
+import ChangePasswordForm from '~/components/forms/ChangePasswordForm'
 
 export default {
   name: 'ProfileCard',
   components: {
-    EditUserForm
+    EditUserForm,
+    ChangePasswordForm
   },
   data () {
     return {
