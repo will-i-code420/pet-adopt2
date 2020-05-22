@@ -2,7 +2,7 @@
   <section id="profile-container" class="my-4 text-center">
     <h1 class="my-4">{{ user.name }} Profile</h1>
     <b-card
-
+      v-if="!editing"
       no-body
       img-src="https://placekitten.com/380/200"
       img-alt="Image"
@@ -35,6 +35,7 @@
         </b-button>
       </b-card-footer>
     </b-card>
+    
   </section>
 </template>
 

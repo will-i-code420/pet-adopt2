@@ -94,6 +94,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'EditUserForm',
   data () {
@@ -109,6 +111,11 @@ export default {
       password2: ''
     }
   },
+  computed: {
+    ...mapGetters({
+      user: 'user/getAllUserInfo'
+    })
+  },
   methods: {
     checkPassword () {
       return this.editUserForm.newPassword === this.password2
@@ -123,6 +130,7 @@ export default {
       }
       await this.$store.dispatch('user/updateInfo', this.editUserForm)
       this.clearEditUserForm()
+      
     },
     clearEditUserForm () {
       this.editUserForm.name = ''
