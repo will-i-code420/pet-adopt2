@@ -81,14 +81,14 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
-  async updateInfo ({ commit, dispatch }, editForm) {
+  async updateInfo ({ commit, dispatch }, { id, userUpdateForm }) {
     const payload = {
       status: null,
       msg: null
     }
     await dispatch('messages/reset', null, { root: true })
     try {
-      const profileUpdate = await this.$axios.post(`/edit-userInfo/${editForm.id}`, editForm)
+      const profileUpdate = await this.$axios.post(`/edit-userInfo/${id}`, userUpdateForm)
       payload.status = 'success'
       payload.msg = profileUpdate.data.msg
       dispatch('messages/setMsgStatus', payload, { root: true })

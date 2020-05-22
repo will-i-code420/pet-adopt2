@@ -65,7 +65,6 @@ export default {
   data () {
     return {
       editUserForm: {
-        id: this.$route.params.id,
         name: '',
         username: '',
         email: ''
@@ -74,9 +73,25 @@ export default {
   },
   methods: {
     async submitProfileEdit () {
-      await this.$store.dispatch('user/updateInfo', this.editUserForm)
+      const payload = {
+        id: this.$route.params.id,
+        userUpdateForm: this.editUserForm
+      }
+      await this.checkForm()
+      await this.$store.dispatch('user/updateInfo', payload)
       await this.clearEditUserForm()
-      this.$emit('edit-submitted')
+      // this.$emit('edit-submitted')
+    },
+    checkForm () {
+      if (this.editUserForm.name === '') {
+        this.editUserForm.name = this.user.name
+      }
+      if (this.editUserForm.username === '') {
+        this.editUserForm.username = this.user.username
+      }
+      if (this.editUserForm.email === '') {
+        this.editUserForm.email = this.user.email
+      }
     },
     clearEditUserForm () {
       this.editUserForm.name = ''
