@@ -35,12 +35,13 @@
         </b-button>
       </b-card-footer>
     </b-card>
-    
+    <EditUserForm v-else @edit-submitted="editProfileInfo" />
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import EditUserForm from '~/components/forms/EditUserForm'
 
 export default {
   name: 'ProfileCard',
@@ -56,7 +57,7 @@ export default {
   },
   methods: {
     editProfileInfo () {
-      alert('editing profile')
+      this.editing = !this.editing
     },
     editAvatar () {
       alert('uploading new avatar')

@@ -130,7 +130,7 @@ export default {
       }
       await this.$store.dispatch('user/updateInfo', this.editUserForm)
       this.clearEditUserForm()
-      
+      this.$emit('edit-submitted')
     },
     clearEditUserForm () {
       this.editUserForm.name = ''
