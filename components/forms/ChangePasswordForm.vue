@@ -54,7 +54,31 @@
 
 <script>
 export default {
-  name: 'ChangePasswordForm'
+  name: 'ChangePasswordForm',
+  data () {
+    return {
+      changePasswordForm: {
+        currentPassword: '',
+        newPassword: ''
+      },
+      cpassword: ''
+    }
+  },
+  methods: {
+    async submitPasswordChange () {
+      const payload = {
+        id: this.$route.params.id,
+        passwordForm: this.changePasswordForm
+      }
+      await this.$store.dispatch('user/changePassword', payload)
+      this.clearPasswordForm
+    },
+    clearPasswordForm () {
+      this.changePasswordForm.currentPassword = ''
+      this.changePasswordForm.newPassword = ''
+      this.cpassword = ''
+    }
+  }
 }
 </script>
 
