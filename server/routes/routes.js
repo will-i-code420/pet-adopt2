@@ -18,6 +18,7 @@ module.exports = app => {
   app.post('/register', authControllerPolicy.register, authController.register)
   app.post('/add-user', authControllerPolicy.addUser, authController.addUser)
   app.post('/edit-userInfo/:id', authControllerPolicy.updateInfo, authController.updateInfo)
+  app.post('/edit-userPass/:id', authControllerPolicy.changePassword, authController.changePassword)
   app.post('/resetPassword', authControllerPolicy.reset, authController.resetPassword)
   app.post('/getUsername', authControllerPolicy.reset, authController.getUsername)
 }

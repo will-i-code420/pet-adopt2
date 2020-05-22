@@ -126,6 +126,31 @@ module.exports = {
       next()
     }
   },
+  changePassword (req, res, next) {
+    const schema = Joi.object({
+      password: Joi.string().regex(/^[a-zA-Z0-9]{8,32}$/).required()
+    })
+    const { error, value } = schema.validate(req.body)
+    if (error) {
+      switch(error.details[0].context.key) {
+        case 'password':
+        res.status(409).json({
+          msg: `Provided password failed to match 1 or both rules:
+          <br>
+          1. Must contain the following characters: lowercase, uppercase, or numbers. No spaces or special characters
+          <br>
+          2. Must be between 8 and 32 characters in length`
+        })
+        break;
+        default:
+        res.status(409).json({
+          msg: 'An Error Occured, please try again'
+        })
+      }
+    } else {
+      next()
+    }
+  },
   reset (req, res, next) {
     const schema = Joi.object({
       email: Joi.string().email({ minDomainSegments: 2 }).required()
