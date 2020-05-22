@@ -1,5 +1,5 @@
 <template>
-  <section id="edit-user-form">
+  <section id="edit-user-info-form">
     <Form>
       <template #form-group-1>
         <b-form-group
@@ -11,7 +11,6 @@
           id="name"
           v-model="editUserForm.name"
           type="text"
-          required
           :placeholder="user.name"
         ></b-form-input>
         </b-form-group>
@@ -26,7 +25,6 @@
           id="username"
           v-model="editUserForm.username"
           type="text"
-          required
           :placeholder="user.username"
         ></b-form-input>
         </b-form-group>
@@ -41,65 +39,13 @@
           id="email"
           v-model="editUserForm.email"
           type="email"
-          required
           :placeholder="user.email"
-        ></b-form-input>
-        </b-form-group>
-      </template>
-      <template #form-group-4>
-        <b-form-group label="Change Password" label-for="change-password">
-          <b-form-radio-group
-            id="change-password"
-            v-model="updatePassword"
-            :options="passwordOptions"
-            name="password-options"
-          ></b-form-radio-group>
-        </b-form-group>
-      </template>
-      <template #form-group-5>
-        <b-form-group
-          v-if="updatePassword"
-          id="input-group-old-password"
-          label="Old Password:"
-          label-for="old-password"
-        >
-        <b-form-input
-          id="oldPassword"
-          v-model="editUserForm.oldPassword"
-          type="password"
-          required
-        ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          v-if="updatePassword"
-          id="input-group-password"
-          label="New Password:"
-          label-for="password"
-        >
-        <b-form-input
-          id="password"
-          v-model="editUserForm.newPassword"
-          type="password"
-          required
-        ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          v-if="updatePassword"
-          id="input-group-confirm-password"
-          label="Confirm New Password:"
-          label-for="confirm-password"
-        >
-        <b-form-input
-          id="confirm-password"
-          v-model="password2"
-          type="password"
-          required
         ></b-form-input>
         </b-form-group>
       </template>
       <template #btn1>
         <b-button variant="primary" class="my-3 mr-3" @click="submitProfileEdit">
-          Submit
+          Submit Changes
         </b-button>
       </template>
     </Form>
@@ -110,7 +56,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'EditUserForm',
+  name: 'EditUserInfoForm',
   computed: {
     ...mapGetters({
       user: 'user/getAllUserInfo'
@@ -118,34 +64,16 @@ export default {
   },
   data () {
     return {
-      passwordOptions: [
-        { text: 'Yes', value: true },
-        { text: 'No', value: false }
-      ],
       editUserForm: {
         id: this.$route.params.id,
         name: '',
         username: '',
-        email: '',
-        oldPassword: '',
-        newPassword: ''
-      },
-      updatePassword: false,
-      password2: ''
+        email: ''
+      }
     }
   },
   methods: {
-    checkPassword () {
-      return this.editUserForm.newPassword === this.password2
-    },
     async submitProfileEdit () {
-      if (!this.checkPassword()) {
-        const payload = {
-          status: 'error',
-          msg: 'New Password does not match Confirm Password!'
-        }
-        return this.$store.disptach('messages/setMsgStatus', payload)
-      }
       await this.$store.dispatch('user/updateInfo', this.editUserForm)
       await this.clearEditUserForm()
       this.$emit('edit-submitted')
@@ -154,9 +82,6 @@ export default {
       this.editUserForm.name = ''
       this.editUserForm.username = ''
       this.editUserForm.email = ''
-      this.editUserForm.oldPassword = ''
-      this.editUserForm.newPassword = ''
-      this.password2 = ''
     }
   }
 }

@@ -1,6 +1,11 @@
 <template>
   <section id="profile-container" class="my-4 text-center">
-    <h1 class="my-4">{{ user.name }} Profile</h1>
+    <h1 class="my-4" v-if="!editing">
+      {{ user.name }} Profile
+    </h1>
+    <h1 class="my-4" v-else>
+      Editing {{ user.name }} Profile
+    </h1>
     <b-card
       v-if="!editing"
       no-body
