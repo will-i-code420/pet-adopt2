@@ -99,6 +99,23 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
+  async changePassword ({ dispatch }, { id, passwordForm }) {
+    const payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const newPassword = await this.$axios.post(`/edit-userPass/${id}`, passwordForm)
+      payload.status = 'success'
+      payload.msg = newPassword.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
+  },
   logout ({ commit }) {
     commit('LOGOUT_USER')
   }
