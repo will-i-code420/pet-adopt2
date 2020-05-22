@@ -65,10 +65,20 @@ export default {
     }
   },
   methods: {
+    checkPassword () {
+      return this.changePasswordForm.newPassword === this.cpassword
+    },
     async submitPasswordChange () {
       const payload = {
         id: this.$route.params.id,
         passwordForm: this.changePasswordForm
+      }
+      if (!this.checkPassword()) {
+        const errorPayload = {
+          status: 'error',
+          msg: 'New Password Does Not Match Confirm Password'
+        }
+        return this.$store.dispatch('messages/setMsgStatus', errorPayload)
       }
       await this.$store.dispatch('user/changePassword', payload)
       this.clearPasswordForm
