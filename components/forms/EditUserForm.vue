@@ -99,6 +99,7 @@ export default {
   data () {
     return {
       editUserForm: {
+        id: this.user._id
         name: '',
         username: '',
         email: '',
@@ -112,8 +113,24 @@ export default {
     checkPassword () {
       return this.editUserForm.newPassword === this.password2
     },
-    submitProfileEdit () {
-
+    async submitProfileEdit () {
+      if (!this.checkPassword()) {
+        const payload = {
+          status: 'error',
+          msg: 'New Password does not match Confirm Password!'
+        }
+        this.$store.disptach('messages/setMsgStatus', payload)
+      }
+      await this.$store.dispatch('user/updateInfo', this.editUserForm)
+      this.clearEditUserForm()
+    },
+    clearEditUserForm () {
+      this.editUserForm.name = ''
+      this.editUserForm.username = ''
+      this.editUserForm.email = ''
+      this.editUserForm.oldPassword = ''
+      this.editUserForm.newPassword = ''
+      this.password2 = ''
     }
   }
 }

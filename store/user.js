@@ -81,6 +81,24 @@ export const actions = {
       dispatch('messages/setMsgStatus', payload, { root: true })
     }
   },
+  async updateInfo ({ commit, dispatch }, editForm) {
+    const payload = {
+      status: null,
+      msg: null
+    }
+    await dispatch('messages/reset', null, { root: true })
+    try {
+      const profileUpdate = await this.$axios.post(`/edit-user/${editForm.id}`, editForm)
+      payload.status = 'success'
+      payload.msg = profileUpdate.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+      commit('SET_USER', profileUpdate.data.user)
+    } catch (e) {
+      payload.status = 'error'
+      payload.msg = e.response.data.msg
+      dispatch('messages/setMsgStatus', payload, { root: true })
+    }
+  },
   logout ({ commit }) {
     commit('LOGOUT_USER')
   }
