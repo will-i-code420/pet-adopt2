@@ -81,7 +81,7 @@ export default {
         return this.$store.dispatch('messages/setMsgStatus', errorPayload)
       }
       await this.$store.dispatch('user/changePassword', payload)
-      this.clearPasswordForm
+      this.clearPasswordForm()
     },
     clearPasswordForm () {
       this.changePasswordForm.currentPassword = ''
