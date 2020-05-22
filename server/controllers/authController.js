@@ -55,13 +55,30 @@ module.exports = {
     }
   },
   async update (req, res) {
+    let user
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body)
-      user.save()
-      res.status(200).json({
-        msg: `${req.body.name} profile updated`,
-        user: user
-      })
+      if (!req.body.password) {
+        user = await User.findByIdAndUpdate(req.params.id, req.body)
+        user.save()
+        res.status(200).json({
+          msg: `${req.body.name} profile updated`,
+          user: user
+        })
+      } else {
+        user = await User.findById(req.params.id)
+        const validPassword = await user.comparePassword(req.body.oldPassword)
+        if (!validPassword) {
+          return res.status(404).json({
+            msg: 'Incorrect Password Provided'
+          })
+        }
+        user = User.updateOne(req.body)
+        user.save()
+        res.status(200).json({
+          msg: `${req.body.name} profile updated`,
+          user: user
+        })
+      }
     } catch (e) {
       console.log(e)
       res.status(500).json({

@@ -64,7 +64,7 @@
           label-for="old-password"
         >
         <b-form-input
-          id="old-password"
+          id="oldPassword"
           v-model="editUserForm.oldPassword"
           type="password"
           required
