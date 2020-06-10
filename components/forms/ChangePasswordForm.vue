@@ -83,9 +83,6 @@ export default {
         return this.$store.dispatch('messages/setMsgStatus', msgPayload)
       }
       await this.$store.dispatch('user/changePassword', payload)
-      msgPayload.status = 'success'
-      msgPayload.msg = 'Password Successfully Changed'
-      await this.$store.dispatch('messages/setMsgStatus', msgPayload)
       this.clearPasswordForm()
     },
     clearPasswordForm () {

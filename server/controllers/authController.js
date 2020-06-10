@@ -60,7 +60,33 @@ module.exports = {
       user.save()
       res.status(200).json({
         msg: `${req.body.name} profile updated`,
-        user: user
+        user: user.toJSON()
+      })
+    } catch (e) {
+      console.log(e)
+      res.status(500).json({
+        msg: e.message
+      })
+    }
+  },
+  async changePassword (req, res) {
+    try {
+      const user = await User.findById(req.params.id)
+      if (!user) {
+        return res.status(404).json({
+          msg: 'Incorrect Login Credentials'
+        })
+      }
+      const validPassword = await user.comparePassword(req.body.currentPassword)
+      if (!validPassword) {
+        return res.status(404).json({
+          msg: 'Incorrect Login Credentials'
+        })
+      }
+      user.password = req.body.newPassword
+      user.save()
+      res.status(200).json({
+        msg: 'New Password Saved'
       })
     } catch (e) {
       console.log(e)
