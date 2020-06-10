@@ -43,7 +43,7 @@
         ></b-form-input>
         </b-form-group>
       </template>
-      <template #btn>
+      <template #btn1>
         <b-button variant="primary" class="my-3 mr-3" @click="submitPasswordChange">
           Submit
         </b-button>
