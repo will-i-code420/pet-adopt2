@@ -73,16 +73,20 @@ export default {
         id: this.$route.params.id,
         passwordForm: this.changePasswordForm
       }
+      const msgPayload = {
+        status: '',
+        msg: ''
+      }
       if (!this.checkPassword()) {
-        const errorPayload = {
-          status: 'error',
-          msg: 'New Password Does Not Match Confirm Password'
-        }
-        return this.$store.dispatch('messages/setMsgStatus', errorPayload)
+        msgPayload.status = 'error'
+        msgPayload.msg = 'New Password Does Not Match Confirm Password'
+        return this.$store.dispatch('messages/setMsgStatus', msgPayload)
       }
       await this.$store.dispatch('user/changePassword', payload)
+      msgPayload.status = 'success'
+      msgPayload.msg = 'Password Successfully Changed'
+      await this.$store.dispatch('messages/setMsgStatus', msgPayload)
       this.clearPasswordForm()
-      // this.$emit('pass-submitted')
     },
     clearPasswordForm () {
       this.changePasswordForm.currentPassword = ''

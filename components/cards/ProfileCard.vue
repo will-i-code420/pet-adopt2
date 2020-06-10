@@ -46,8 +46,8 @@
         </b-button>
       </b-card-footer>
     </b-card>
-    <EditUserForm v-if="editingInfo" @edit-submitted="editProfileInfo" />
-    <ChangePasswordForm v-if="editingPass" @pass-submitted="editPassword" />
+    <EditUserForm v-if="editingInfo" />
+    <ChangePasswordForm v-if="editingPass" />
   </section>
 </template>
 

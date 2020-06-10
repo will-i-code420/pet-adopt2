@@ -80,7 +80,6 @@ export default {
       await this.checkForm()
       await this.$store.dispatch('user/updateInfo', payload)
       await this.clearEditUserForm()
-      // this.$emit('edit-submitted')
     },
     checkForm () {
       if (this.editUserForm.name === '') {
