@@ -32,8 +32,15 @@
 </template>
 
 <script>
+import ErrorMsg from '~/components/common/ErrorMsg'
+import SuccessMsg from '~/components/common/SuccessMsg'
+
 export default {
-  name: 'Form'
+  name: 'Form',
+  components: {
+    ErrorMsg,
+    SuccessMsg
+  }
 }
 </script>
 
